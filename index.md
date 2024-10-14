@@ -1,6 +1,6 @@
 # Introduction
 
-You can also read the material in [PDF](_book/Event-Based-Models-for-Disease-Progression.pdf).
+You can also read the material in [PDF](Event-Based-Models-for-Disease-Progression.pdf).
 
 Event-based Model (EBM) is used to model the order of degenerative diseases. In another word, we want to estimate the order in which different biological factors ("biomarkers") get affected by a specific disease. The order is categorized by multiple **stages** in the disease progression. 
 
