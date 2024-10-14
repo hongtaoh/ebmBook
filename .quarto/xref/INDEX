@@ -1,0 +1,41 @@
+{
+  "index.qmd": {
+    "index.html": "6f1a26dd"
+  },
+  "intro.qmd": {
+    "intro.html": "36776de2"
+  },
+  "summary.qmd": {
+    "summary.html": "4ee571aa"
+  },
+  "references.qmd": {
+    "references.html": "511f46f4"
+  },
+  "summary.ipynb": {
+    "summary.html": "a569fce4"
+  },
+  "index.ipynb": {
+    "index.html": "707a39d8"
+  },
+  "intro.ipynb": {
+    "intro.html": "44d20af8"
+  },
+  "index.md": {
+    "index.html": "18ff0e0f"
+  },
+  "gen.ipynb": {
+    "gen.html": "8becf41e"
+  },
+  "calcLikelihood.ipynb": {
+    "calcLikelihood.html": "e04df1f4"
+  },
+  "gen2.ipynb": {
+    "gen2.html": "727a82eb"
+  },
+  "genModel.ipynb": {
+    "genModel.html": "392f83b3"
+  },
+  "estPara.ipynb": {
+    "estPara.html": "6b8eba46"
+  }
+}

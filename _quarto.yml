@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "Event Based Models for Disease Progression"
+  author: "Hongtao Hao & Joseph Austerweil"
+  date: "10/13/2024"
+  chapters:
+    - index.md
+    - genModel.ipynb
+    - calcLikelihood.ipynb
+    - gen.ipynb
+    - estPara.ipynb
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

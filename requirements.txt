@@ -1,0 +1,7 @@
+git+https://github.com/Behrouz-Babaki/COP-Kmeans.git
+vl-convert-python
+pandas
+numpy
+matplotlib
+seaborn
+altair
