@@ -1,1 +1,1 @@
-{"headings":["known-k_j","unknown-k_j"],"entries":[{"caption":"","order":{"number":1,"section":[3,1,0,0,0,0,0]},"key":"eq-known-kj"},{"caption":"","order":{"number":2,"section":[3,2,0,0,0,0,0]},"key":"eq-unknown-kj"}],"options":{"chapters":true}}
+{"options":{"chapters":true},"headings":["known-k_j","unknown-k_j"],"entries":[{"key":"eq-unknown-kj","order":{"number":2,"section":[3,2,0,0,0,0,0]},"caption":""},{"key":"eq-known-kj","order":{"number":1,"section":[3,1,0,0,0,0,0]},"caption":""}]}
