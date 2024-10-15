@@ -20,4 +20,12 @@ We have several assumptions in EBM:
 - The order in which different biomarkers get affected by the disease is the same across all patients.
 - Biomarker data can be approximated by a Gaussian distribution. 
 
+::: {.callout-note appearance="simple"}
+
+## Pay Attention
+
+The third assumption, i.e., Gaussian approximation, isn't always hold. However, for the purpose of our current method, we assume this is true. There are other methods that do not assume Gaussian distributions, for example, [KDE EBM](https://github.com/ucl-pond/kde_ebm), against which we will compare results with later in our report.
+
+::: 
+
 This book contains chapters that explain step by step how we use the event-based model to estimate the order of disease progression based on cross-sectional patients' biomarker data. 

@@ -84,7 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./estPara.html" rel="next">
+<link href="./estDistParams.html" rel="next">
 <link href="./calcLikelihood.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -95,6 +95,9 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -207,7 +210,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./calcLikelihood.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculating the Likelihood of Biomarker Measurements</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculate the Likelihood of Biomarker Measurements</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -218,7 +221,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./estPara.html" class="sidebar-item-text sidebar-link">
+  <a href="./estDistParams.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estimate Distribution Parameters</span></span></a>
   </div>
 </li>
@@ -279,7 +282,7 @@ window.Quarto = {
 <div id="fig-chen1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chen1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/chen1.png" class="img-fluid figure-img">
+<a href="img/chen1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;4.1: Theta and Phi from Chen’s Paper"><img src="img/chen1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chen1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.1: Theta and Phi from Chen’s Paper
@@ -289,7 +292,7 @@ Figure&nbsp;4.1: Theta and Phi from Chen’s Paper
 <div id="fig-chen2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chen2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="img/chen2.png" class="img-fluid figure-img">
+<a href="img/chen2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;4.2: S from Chen’s Paper"><img src="img/chen2.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chen2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.2: S from Chen’s Paper
@@ -448,7 +451,7 @@ Figure&nbsp;4.2: S from Chen’s Paper
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'files/real_theta_phi.json'</span>, <span class="st">'w'</span>) <span class="im">as</span> fp:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    json.dump(hashmap_of_dicts, fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="18">
+<div id="cell-fig-eval-theta-phi-estimations" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>biomarkers <span class="op">=</span> all_ten_biomarker_names</span>
@@ -479,9 +482,14 @@ Figure&nbsp;4.2: S from Chen’s Paper
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        ax, mu1, sigma1, mu2, sigma2, title <span class="op">=</span> biomarker)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="gen_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+<div id="fig-eval-theta-phi-estimations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eval-theta-phi-estimations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="gen_files/figure-html/fig-eval-theta-phi-estimations-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;4.3: evaluate theta and phi estimations"><img src="gen_files/figure-html/fig-eval-theta-phi-estimations-output-1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eval-theta-phi-estimations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: evaluate theta and phi estimations
+</figcaption>
 </figure>
 </div>
 </div>
@@ -740,7 +748,7 @@ Figure&nbsp;4.2: S from Chen’s Paper
 <p>This dataset has <span class="math inline">\(2000\)</span> rows because we have <span class="math inline">\(200\)</span> participants and <span class="math inline">\(10\)</span> biomarkers.</p>
 <section id="distribution-of-all-biomarker-values" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="distribution-of-all-biomarker-values"><span class="header-section-number">4.3.1</span> Distribution of all biomarker values</h3>
-<div id="cell-16" class="cell" data-execution_count="25">
+<div id="cell-fig-dist-biomarker-vals" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>alt.renderers.enable(<span class="st">'png'</span>)</span>
@@ -766,10 +774,14 @@ Figure&nbsp;4.2: S from Chen’s Paper
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="25">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="gen_files/figure-html/cell-12-output-1.png" width="723" height="504" class="figure-img"></p>
-<figcaption>Distribution of biomarker measurments</figcaption>
+<div id="fig-dist-biomarker-vals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dist-biomarker-vals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="gen_files/figure-html/fig-dist-biomarker-vals-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4.4: Distribution of biomarker measurments"><img src="gen_files/figure-html/fig-dist-biomarker-vals-output-1.png" width="723" height="504" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-biomarker-vals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Distribution of biomarker measurments
+</figcaption>
 </figure>
 </div>
 </div>
@@ -777,7 +789,7 @@ Figure&nbsp;4.2: S from Chen’s Paper
 </section>
 <section id="distribution-of-a-specific-biomarker" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="distribution-of-a-specific-biomarker"><span class="header-section-number">4.3.2</span> Distribution of A Specific Biomarker</h3>
-<div id="cell-18" class="cell" data-execution_count="26">
+<div id="cell-fig-dist-specific-biomarker-vals" class="cell" data-execution_count="26">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> <span class="dv">1</span></span>
@@ -804,10 +816,14 @@ Figure&nbsp;4.2: S from Chen’s Paper
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="26">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="gen_files/figure-html/cell-13-output-1.png" width="657" height="302" class="figure-img"></p>
-<figcaption>Distribution of HIP-FCI measurements, compring bewteen affected and non-affected group</figcaption>
+<div id="fig-dist-specific-biomarker-vals" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dist-specific-biomarker-vals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="gen_files/figure-html/fig-dist-specific-biomarker-vals-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;4.5: Distribution of HIP-FCI measurements, compring bewteen affected and non-affected group"><img src="gen_files/figure-html/fig-dist-specific-biomarker-vals-output-1.png" width="657" height="302" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-specific-biomarker-vals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Distribution of HIP-FCI measurements, compring bewteen affected and non-affected group
+</figcaption>
 </figure>
 </div>
 </div>
@@ -943,7 +959,7 @@ Figure&nbsp;4.2: S from Chen’s Paper
 </div>
 </div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="28">
+<div id="cell-fig-dist-biomarker-vals-for-participant" class="cell" data-execution_count="28">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pidx <span class="op">=</span><span class="dv">1</span> <span class="co"># participant index</span></span>
@@ -960,10 +976,14 @@ Figure&nbsp;4.2: S from Chen’s Paper
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="28">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="gen_files/figure-html/cell-15-output-1.png" width="424" height="401" class="figure-img"></p>
-<figcaption>Distribution of biomarker measurements for a specific participant</figcaption>
+<div id="fig-dist-biomarker-vals-for-participant" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dist-biomarker-vals-for-participant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="gen_files/figure-html/fig-dist-biomarker-vals-for-participant-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;4.6: Distribution of biomarker measurements for a specific participant"><img src="gen_files/figure-html/fig-dist-biomarker-vals-for-participant-output-1.png" width="424" height="401" class="figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-biomarker-vals-for-participant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Distribution of biomarker measurements for a specific participant
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1401,17 +1421,49 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./calcLikelihood.html" class="pagination-link" aria-label="Calculating the Likelihood of Biomarker Measurements">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculating the Likelihood of Biomarker Measurements</span></span>
+      <a href="./calcLikelihood.html" class="pagination-link" aria-label="Calculate the Likelihood of Biomarker Measurements">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculate the Likelihood of Biomarker Measurements</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./estPara.html" class="pagination-link" aria-label="Estimate Distribution Parameters">
+      <a href="./estDistParams.html" class="pagination-link" aria-label="Estimate Distribution Parameters">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estimate Distribution Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
