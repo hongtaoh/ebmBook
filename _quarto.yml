@@ -11,6 +11,11 @@ book:
     - calcLikelihood.ipynb
     - gen.ipynb
     - estDistParams.ipynb
+    - estStages.ipynb
+    - estS.ipynb
+    - copKMeans.ipynb
+    - softKMeans.ipynb
+    - conjugatePriors.ipynb
     - references.qmd
 
 bibliography: references.bib

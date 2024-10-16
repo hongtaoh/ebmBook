@@ -40,5 +40,20 @@
   },
   "estDistParams.ipynb": {
     "estDistParams.html": "5595620b"
+  },
+  "estStages.ipynb": {
+    "estStages.html": "26dd0070"
+  },
+  "estS.ipynb": {
+    "estS.html": "f76f3c1f"
+  },
+  "copKMeans.ipynb": {
+    "copKMeans.html": "fe012823"
+  },
+  "softKMeans.ipynb": {
+    "softKMeans.html": "6017f083"
+  },
+  "conjugatePriors.ipynb": {
+    "conjugatePriors.html": "db2a5d52"
   }
 }
