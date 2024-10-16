@@ -239,7 +239,7 @@ window.Quarto = {
 </header>
 
 
-<p>Suppose we have a participant’s data, for example, <a href="#fig-sample-data" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-sample-data</span></a>. Now, the question is:</p>
+<p>Suppose we have a participant’s data, for example, <a href="genModel.html#fig-sample-data" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. Now, the question is:</p>
 <blockquote class="blockquote">
 <p>What is the likelihood of this participant having this sequence of biomarker data, given that we know <span class="math inline">\(S, \theta, \phi\)</span>.</p>
 </blockquote>
@@ -279,7 +279,7 @@ P(X_{j} | S) = \sum_{k_j=0}^N{P(k_j) p(X_{j} \mid S, k_j)}
 <p>Suppose we have the same information above, except that we do not know at which disease stage the patient is, i.e., we do not know <span class="math inline">\(k_j\)</span>. We have the observed biomarker data: <span class="math inline">\(X_j = [77, 45, 53, 90]\)</span>. And I wonder: what is the likelihood of seeing this specific ovserved data?</p>
 <p>We assume that all five stages (including <span class="math inline">\(k_j = 0\)</span>) are equally likely.</p>
 <p>We do not know <span class="math inline">\(k_j\)</span>, so the best option is to calculate the “average” likelihood of all the biomarker data.</p>
-<p>Based on <a href="#eq-known-kj" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-known-kj</span></a>, we can calculate the following:</p>
+<p>Based on <a href="#eq-known-kj" class="quarto-xref">Equation&nbsp;<span>3.1</span></a>, we can calculate the following:</p>
 <p><span class="math inline">\(L_1 = p(X_j | S, k_j = 1)\)</span></p>
 <p><span class="math inline">\(L_2 = p(X_j | S, k_j = 2)\)</span></p>
 <p><span class="math inline">\(L_3 = p(X_j | S, k_j = 3)\)</span></p>

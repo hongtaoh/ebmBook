@@ -466,7 +466,7 @@ Tip
 <p>To use this algorithm, we only need to know (1) whether this participant is diseased; and (2) each biomarker measurement.</p>
 </div>
 </div>
-<p>The first method we can use is constrained K-means, implemented by <span class="citation" data-cites="behrouz_babaki_2017_831850">Babaki (<a href="#ref-behrouz_babaki_2017_831850" role="doc-biblioref">2017</a>)</span>.</p>
+<p>The first method we can use is constrained K-means, implemented by <span class="citation" data-cites="behrouz_babaki_2017_831850">Babaki (<a href="references.html#ref-behrouz_babaki_2017_831850" role="doc-biblioref">2017</a>)</span>.</p>
 <p>We choose constrained K-Means instead of the standard K-Means algorithm because we know all healthy participants have to belong to the same cluster. The constrained K-Means algorithm can satisfy this constraint.</p>
 <div id="cell-5" class="cell" data-execution_count="34">
 <details class="code-fold">
@@ -916,7 +916,7 @@ Figure&nbsp;5.1: Comparing Theta and Phi Distributions Using Constrained K-Means
 <li>Normal-Normal</li>
 </ul>
 <p>In our example, we assume that the measurement data for each biomarker follows a normal distribution; however, we do not know the exact <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>. Our job is to estimate the two parameters for each biomarker based on the data we have.</p>
-<p>According to <a href="https://statswithr.github.io/book/inference-and-decision-making-with-multiple-parameters.html#sec:normal-gamma"><em>An Introduction to Bayesian Thinking</em></a> by <span class="citation" data-cites="clydeintroduction">Clyde et al. (<a href="#ref-clydeintroduction" role="doc-biblioref">2022</a>)</span>, if the data comes from a normal distribution with unknown <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, the conjugate prior for <span class="math inline">\(\mu\)</span> has a normal distribution with mean <span class="math inline">\(m_0\)</span> and variance <span class="math inline">\(\frac{\sigma^2}{n_0}\)</span>. The conjugate prior for <span class="math inline">\(\frac{1}{\sigma^2}\)</span> has a Gamma distribution with shape <span class="math inline">\(\frac{v_0}{2}\)</span> and rate <span class="math inline">\(\frac{v_0 s_0^{2}}{2}\)</span> where</p>
+<p>According to <a href="https://statswithr.github.io/book/inference-and-decision-making-with-multiple-parameters.html#sec:normal-gamma"><em>An Introduction to Bayesian Thinking</em></a> by <span class="citation" data-cites="clydeintroduction">Clyde et al. (<a href="references.html#ref-clydeintroduction" role="doc-biblioref">2022</a>)</span>, if the data comes from a normal distribution with unknown <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, the conjugate prior for <span class="math inline">\(\mu\)</span> has a normal distribution with mean <span class="math inline">\(m_0\)</span> and variance <span class="math inline">\(\frac{\sigma^2}{n_0}\)</span>. The conjugate prior for <span class="math inline">\(\frac{1}{\sigma^2}\)</span> has a Gamma distribution with shape <span class="math inline">\(\frac{v_0}{2}\)</span> and rate <span class="math inline">\(\frac{v_0 s_0^{2}}{2}\)</span> where</p>
 <ul>
 <li><span class="math inline">\(m_0\)</span>: prior estimate of <span class="math inline">\(\mu\)</span>.</li>
 <li><span class="math inline">\(n_0\)</span>: how strongly is the prior belief in <span class="math inline">\(m_0\)</span> is held.</li>
@@ -1209,7 +1209,7 @@ The result from conjugate priors looks better than that from constrained kmeans.
 <p>Soft K-Means is a good alternative to these two because it utilizes <span class="math inline">\(S\)</span> while at the same time not assuming we know <span class="math inline">\(k_j\)</span>.</p>
 <p>The logic of soft-kmeans is this;</p>
 <ol type="1">
-<li>If a participant is diseased, we iterate through all possible disease stages, and calculate the associated likelihood using <a href="#eq-known-kj" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-known-kj</span></a>. We then normalize these likelihoods to obtain the estimated probability of this participant being at each stage. For example, if there are three possible stages, and the associated likelihoods are <code>[1, 3, 6]</code>, then the normalized likelihoods would be <code>[0.1, 0.3, 0.6]</code>.</li>
+<li>If a participant is diseased, we iterate through all possible disease stages, and calculate the associated likelihood using <a href="calcLikelihood.html#eq-known-kj" class="quarto-xref">Equation&nbsp;<span>3.1</span></a>. We then normalize these likelihoods to obtain the estimated probability of this participant being at each stage. For example, if there are three possible stages, and the associated likelihoods are <code>[1, 3, 6]</code>, then the normalized likelihoods would be <code>[0.1, 0.3, 0.6]</code>.</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1221,7 +1221,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You may wonder how we can use <a href="#eq-known-kj" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-known-kj</span></a> when we do not know <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> yet (which is exactly what we are trying to do!). If you notice this, it is a very keen observation!.</p>
+<p>You may wonder how we can use <a href="calcLikelihood.html#eq-known-kj" class="quarto-xref">Equation&nbsp;<span>3.1</span></a> when we do not know <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> yet (which is exactly what we are trying to do!). If you notice this, it is a very keen observation!.</p>
 <p>If fact, we are going to use the estimated <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> we obtained above using constrained K-Means.</p>
 </div>
 </div>
@@ -1572,7 +1572,7 @@ Figure&nbsp;5.3: Comparing Theta and Phi Distributions Using Soft K-Mean
 <p>We also noticed that both conjugate priors and soft k-means need to use the result from constrained k-means as a fallback.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-behrouz_babaki_2017_831850" class="csl-entry" role="listitem">
 Babaki, Behrouz. 2017. <span>“COP-Kmeans Version 1.5.”</span> <a href="https://doi.org/10.5281/zenodo.831850">https://doi.org/10.5281/zenodo.831850</a>.
 </div>
@@ -2016,7 +2016,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -281,7 +281,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, we will do some exercise to have a deeper understanding of the math equations in <a href="#sec-calc-ll" class="quarto-xref"><span class="quarto-unresolved-ref">sec-calc-ll</span></a>.</p>
+<p>In this chapter, we will do some exercise to have a deeper understanding of the math equations in <a href="calcLikelihood.html" class="quarto-xref"><span>Chapter 3</span></a>.</p>
 <section id="challenge" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="challenge"><span class="header-section-number">6.1</span> Challenge</h2>
 <p>Suppos we know <span class="math inline">\(S, \theta, \phi\)</span>. How could we estimate participant stages?</p>
@@ -366,7 +366,7 @@ window.Quarto = {
 <h2 data-number="6.2" class="anchored" data-anchor-id="solution"><span class="header-section-number">6.2</span> Solution</h2>
 <p>One possible solution looks like this:</p>
 <ul>
-<li><p>For each diseased participant, we iterate through all possible disease stages and calculate the likelihood using <a href="#eq-known-kj" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-known-kj</span></a>.</p></li>
+<li><p>For each diseased participant, we iterate through all possible disease stages and calculate the likelihood using <a href="calcLikelihood.html#eq-known-kj" class="quarto-xref">Equation&nbsp;<span>3.1</span></a>.</p></li>
 <li><p>We normalize all the likelihoods, construct an array, and randomly sample one possible stage according to that array.</p></li>
 <li><p>Run multiple times, for each diseased participant, the mode of the sampled stages will be their stage.</p></li>
 </ul>
@@ -665,7 +665,7 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p>What if we know only <span class="math inline">\(S\)</span>, but not <span class="math inline">\(\theta\)</span> nor <span class="math inline">\(\phi\)</span>?</p>
-<p>The first step for us is to estimate <span class="math inline">\(\theta, \phi\)</span> and then follow the above procedures. To do that, refer back to <a href="#sec-estimate-dist-params" class="quarto-xref"><span class="quarto-unresolved-ref">sec-estimate-dist-params</span></a>.</p>
+<p>The first step for us is to estimate <span class="math inline">\(\theta, \phi\)</span> and then follow the above procedures. To do that, refer back to <a href="estDistParams.html" class="quarto-xref"><span>Chapter 5</span></a>.</p>
 </div>
 </div>
 
@@ -1106,7 +1106,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","loop":false});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
