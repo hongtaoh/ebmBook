@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./aggResults.html" rel="next">
 <link href="./softKMeans.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -234,6 +234,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./aggResults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Final Results</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -280,6 +286,16 @@ window.Quarto = {
 <li>We first estimate distribution parameters using contrained K-Means, the exact procedure we covered in <a href="estDistParams.html#sec-cop-kmeans" class="quarto-xref"><span>Section 5.1</span></a>.</li>
 <li>We first randomly assign each diseased participant a stage. Then, in each iteration, we use conjugate priors algorithm to update <span class="math inline">\(\theta, \phi\)</span> (refer to <a href="estDistParams.html#sec-conjugate-priors" class="quarto-xref"><span>Section 5.2</span></a>) and also <span class="math inline">\(k_j\)</span>. We use <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis–Hastings algorithm</a> to accept or reject a proposed <span class="math inline">\(S\)</span>.</li>
 </ul>
+<div id="fig-cp-algo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cp-algo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/cp_algo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;10.1: Conjugate Priors Algorithm"><img src="img/cp_algo.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cp-algo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Conjugate Priors Algorithm
+</figcaption>
+</figure>
+</div>
 <section id="implementation" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="implementation"><span class="header-section-number">10.1</span> Implementation</h2>
 <div id="cell-1" class="cell" data-execution_count="1">
@@ -650,10 +666,10 @@ Data file found: /Users/hongtaoh/Desktop/github/ebmBook/data/150|200_3.csv
 <div id="fig-conjugate_priors-result" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-conjugate_priors-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="conjugate_priors/img/150-200_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;10.1: Result of Conjugate Priors"><img src="conjugate_priors/img/150-200_3.png" class="img-fluid figure-img"></a>
+<a href="conjugate_priors/img/150-200_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;10.2: Result of Conjugate Priors"><img src="conjugate_priors/img/150-200_3.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-conjugate_priors-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.1: Result of Conjugate Priors
+Figure&nbsp;10.2: Result of Conjugate Priors
 </figcaption>
 </figure>
 </div>
@@ -1095,13 +1111,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./aggResults.html" class="pagination-link" aria-label="Final Results">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Final Results</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

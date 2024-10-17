@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Hongtao Hao &amp; Joseph Austerweil">
-<meta name="dcterms.date" content="2024-10-13">
 
-<title>Event Based Models for Disease Progression</title>
+<title>11&nbsp; Final Results – Event Based Models for Disease Progression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./genModel.html" rel="next">
+<link href="./references.html" rel="next">
+<link href="./conjugatePriors.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -114,7 +113,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./aggResults.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Final Results</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,7 +140,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -201,7 +200,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./aggResults.html" class="sidebar-item-text sidebar-link">
+  <a href="./aggResults.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Final Results</span></span></a>
   </div>
 </li>
@@ -216,40 +215,22 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Event Based Models for Disease Progression</h1>
+<h1 class="title"><span id="sec-final-res" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Final Results</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Hongtao Hao &amp; Joseph Austerweil </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 13, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -259,56 +240,56 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>You can also read the material in <a href="Event-Based-Models-for-Disease-Progression.pdf">PDF</a>.</p>
-<p>Event-based Model (EBM) is used to model the order of degenerative diseases. In another word, we want to estimate the order in which different biological factors (“biomarkers”) get affected by a specific disease. The order is categorized by multiple <strong>stages</strong> in the disease progression.</p>
-<p>For instance, Alzheimer may have the following stages:</p>
-<div id="fig-ad-progression" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<p>We only used 10 iterations in the previous three chapters to demonstrate how our algorithm works. However, to get them really work, we need to run several thousand iterations.</p>
+<p>Also, to cancel out noises and randomness, we need to use all the fifity variations of data.</p>
+<p>With the help of <a href="https://chtc.cs.wisc.edu/">The Center for High Throughput Computing</a> at the University of Wisconsin-Madison, we were able to run these tests. In the following, we present our results.</p>
+<div id="fig-res-soft-kmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ad-progression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="img/ad_stages.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1.1: Alzheimer Disease Progression (Credit: https://preventad.com/alzheimers-disease/)"><img src="img/ad_stages.png" class="img-fluid figure-img" width="500"></a>
+<div aria-describedby="fig-res-soft-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/boxplot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;11.1: Results of Soft K-Means"><img src="img/boxplot.png" class="img-fluid figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ad-progression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.1: Alzheimer Disease Progression (Credit: https://preventad.com/alzheimers-disease/)
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-res-soft-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: Results of Soft K-Means
 </figcaption>
 </figure>
 </div>
-<p>We estimate this order based on the biomarker data from patients’ visits. These data are typically results of neuropsych (e.g., MMSE) and/or biological examiations (e.g., blood pressure). Visits data can be longitudinal and/or cross-sectional, i.e., single visits from a cohort of patients.</p>
-<p>Knowing the disease progression is important because it helps prevent and hopefully cure the disease. It also helps health professionals prepare for the disease’s further development.</p>
-<p>We have several assumptions in EBM:</p>
-<div id="fig-ebm-assumptions" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-res-conjugate-priors" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ebm-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="img/assumptions.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1.2: Assumptions of EBM"><img src="img/assumptions.png" class="img-fluid figure-img" width="500"></a>
+<div aria-describedby="fig-res-conjugate-priors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/cp_boxplot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;11.2: Results of Conjugate Priors"><img src="img/cp_boxplot.png" class="img-fluid figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ebm-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1.2: Assumptions of EBM
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-res-conjugate-priors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: Results of Conjugate Priors
 </figcaption>
 </figure>
 </div>
-<ul>
-<li>The disease is irreversible (i.e., a patient cannot go from stage 2 to stage 1)</li>
-<li>The order in which different biomarkers get affected by the disease is the same across all patients.</li>
-<li>Biomarker data can be approximated by a Gaussian distribution.</li>
-</ul>
-<div class="callout callout-style-simple callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>From the two results, we are able to see that it is better to more participants, because that offers more information for our models. In terms of healthy ratio, it seems <span class="math inline">\(50\%\)</span> is a sweet spot.</p>
+<p>Also, we notice that conjugate priors performs better than soft K-Means.</p>
+<p>We also tested the two algorithms developed by <a href="https://ucl-pond.github.io/">UCL POND group</a> with the same 750 datasets: <a href="https://github.com/ucl-pond/ebm">EBM Basic</a> and <a href="https://github.com/ucl-pond/kde_ebm">KDE EBM</a>. See the following for results:</p>
+<div id="fig-res-ebm-basic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-res-ebm-basic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/ebm-basic.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;11.3: Results of EBM"><img src="img/ebm-basic.png" class="img-fluid figure-img"></a>
 </div>
-<div class="callout-title-container flex-fill">
-Pay Attention
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-res-ebm-basic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.3: Results of EBM
+</figcaption>
+</figure>
 </div>
+<div id="fig-res-ebm-kde" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-res-ebm-kde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/ebm-kde.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;11.4: Results of KDE EBM"><img src="img/ebm-kde.png" class="img-fluid figure-img"></a>
 </div>
-<div class="callout-body-container callout-body">
-<p>The third assumption, i.e., Gaussian approximation, isn’t always hold. However, for the purpose of our current method, we assume this is true. There are other methods that do not assume Gaussian distributions, for example, <a href="https://github.com/ucl-pond/kde_ebm">KDE EBM</a>, against which we will compare results with later in our report.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-res-ebm-kde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.4: Results of KDE EBM
+</figcaption>
+</figure>
 </div>
-</div>
-<p>This book contains chapters that explain step by step how we use the event-based model to estimate the order of disease progression based on cross-sectional patients’ biomarker data.</p>
+<p>We can see that the performance of KDE EBM is more stable but EBM basic performs well when the healthy ratio is below <span class="math inline">\(50\%\)</span>.</p>
+<p>Neither of these methods had results as good as conjugate priors. We have to point out, that, even though their accuracy is not as high, their speed is really high. Both of these two algorithms can generate results with a single laptop GPU in just one hour; however, it might take days for our algorithms.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -733,15 +714,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./conjugatePriors.html" class="pagination-link" aria-label="Estimate $S$ with Conjugate Priors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Conjugate Priors</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./genModel.html" class="pagination-link" aria-label="EBM as A Generative Model">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM as A Generative Model</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

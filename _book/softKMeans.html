@@ -234,6 +234,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./aggResults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Final Results</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -280,6 +286,16 @@ window.Quarto = {
 <li>We first estimate distribution parameters using contrained K-Means, the exact procedure we covered in <a href="estDistParams.html#sec-cop-kmeans" class="quarto-xref"><span>Section 5.1</span></a>.</li>
 <li>In each iteration, we use Soft Kmeans algorithm to update <span class="math inline">\(\theta, \phi\)</span> (refer to <a href="estDistParams.html#sec-soft-kmeans" class="quarto-xref"><span>Section 5.3</span></a>) and use <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis–Hastings algorithm</a> to accept or reject a proposed <span class="math inline">\(S\)</span>.</li>
 </ul>
+<div id="fig-soft-kmeans-algo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-soft-kmeans-algo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/soft_kmeans_algo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;9.1: Soft K-Means Algorithm"><img src="img/soft_kmeans_algo.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soft-kmeans-algo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Soft K-Means Algorithm
+</figcaption>
+</figure>
+</div>
 <section id="implementation" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="implementation"><span class="header-section-number">9.1</span> Implementation</h2>
 <div id="cell-1" class="cell" data-execution_count="5">
@@ -690,10 +706,10 @@ Data file found: /Users/hongtaoh/Desktop/github/ebmBook/data/150|200_3.csv</code
 <div id="fig-soft-kmeans-result" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-soft-kmeans-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="soft_kmeans/img/150-200_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;9.1: Result of Soft K-Means"><img src="soft_kmeans/img/150-200_3.png" class="img-fluid figure-img"></a>
+<a href="soft_kmeans/img/150-200_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;9.2: Result of Soft K-Means"><img src="soft_kmeans/img/150-200_3.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soft-kmeans-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.1: Result of Soft K-Means
+Figure&nbsp;9.2: Result of Soft K-Means
 </figcaption>
 </figure>
 </div>
@@ -1141,7 +1157,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

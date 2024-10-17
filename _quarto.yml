@@ -16,6 +16,7 @@ book:
     - copKMeans.ipynb
     - softKMeans.ipynb
     - conjugatePriors.ipynb
+    - aggResults.ipynb
     - references.qmd
 
 bibliography: references.bib
