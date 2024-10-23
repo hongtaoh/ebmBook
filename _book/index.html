@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -262,7 +282,7 @@ window.Quarto = {
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <p>You can also read the material in <a href="Event-Based-Models-for-Disease-Progression.pdf">PDF</a>.</p>
-<p>Event-based Model (EBM) is used to model the order of degenerative diseases. In another word, we want to estimate the order in which different biological factors (“biomarkers”) get affected by a specific disease. The order is categorized by multiple <strong>stages</strong> in the disease progression.</p>
+<p>The Event-Based Model (EBM; <span class="citation" data-cites="fonteijn2012event">Fonteijn et al. (<a href="references.html#ref-fonteijn2012event" role="doc-biblioref">2012</a>)</span>) is a probabilistic model that can be used to infer the order by which a disease affects the parts of a person’s body. In other words, it allows us to estimate the stages by which different biological factors (“biomarkers”) are affected by a disease.</p>
 <p>For instance, Alzheimer may have the following stages:</p>
 <div id="fig-ad-progression" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -276,6 +296,8 @@ Figure&nbsp;1.1: Alzheimer Disease Progression (Credit: https://preventad.com/al
 </div>
 <p>We estimate this order based on the biomarker data from patients’ visits. These data are typically results of neuropsych (e.g., MMSE) and/or biological examiations (e.g., blood pressure). Visits data can be longitudinal and/or cross-sectional, i.e., single visits from a cohort of patients.</p>
 <p>Knowing the disease progression is important because it helps prevent and hopefully cure the disease. It also helps health professionals prepare for the disease’s further development.</p>
+<p>The EBM has been especially helpful at providing converging support for the stages of neural deterioration of neural degenerative diseases. Neural diseases are notoriously complex for many reasons. For instance, they are difficult to study in vivo due to the challenge of direct and accurate measurement of the brain at high resolution without harming the person.</p>
+<p>By formulating the deterioration process as a probabilistic model, the EBM affords the ability to conduct complex reasoning from noisy patient data. Given the difficulty of this task, it is unclear how much (number of participants) and what kind of data (healthy percentage) is needed for reliable estimation and how to best understand the uncertainty of model estimates. Although prior work has not addressed the former question in great detail, prior work has derived uncertainty of its estimates indirectly using bootstrapping. In this monograph, we analyze the statistical consistency of different inference methods for the EBM model. To foreshadow, our results are reassuring, yet troubling, and promising. Inference methods used in prior work work well when there is a large number of participants (~500) and the percentage of healthy participants is near 50%. However, clinical studies with such large sample sizes are uncommon and so, in typical settings, the prior approximation methods may be unreliable. We test our own method using Markov chain Monte Carlo techniques and find it provides much more accurate estimates for small sample sizes that are robust across different percentages of healthy participants. The results of our analyses come with a caveat: they are based on simulated data. We discuss this caveat, other limitations, and how to interpret our results in the monograph.</p>
 <p>We have several assumptions in EBM:</p>
 <div id="fig-ebm-assumptions" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -302,12 +324,18 @@ Pay Attention
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The third assumption, i.e., Gaussian approximation, isn’t always hold. However, for the purpose of our current method, we assume this is true. There are other methods that do not assume Gaussian distributions, for example, <a href="https://github.com/ucl-pond/kde_ebm">KDE EBM</a>, against which we will compare results with later in our report.</p>
+<p>The third assumption, i.e., Gaussian approximation, often will be violated in raw biomarker data. For example, measurements of the concentration of amyloid proteins associated with Alzheimer’s disease are not necessarily non-negative. Further, their resolution has changed over the decades.</p>
+<p>However, for the purpose of our current method, we assume this is true. There are nonparametric versions of the EBM, for example, <a href="https://github.com/ucl-pond/kde_ebm">KDE EBM</a></p>
 </div>
 </div>
 <p>This book contains chapters that explain step by step how we use the event-based model to estimate the order of disease progression based on cross-sectional patients’ biomarker data.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-fonteijn2012event" class="csl-entry" role="listitem">
+Fonteijn, Hubert M, Marc Modat, Matthew J Clarkson, Josephine Barnes, Manja Lehmann, Nicola Z Hobbs, Rachael I Scahill, et al. 2012. <span>“An Event-Based Model for Disease Progression and Its Application in Familial Alzheimer’s Disease and Huntington’s Disease.”</span> <em>NeuroImage</em> 60 (3): 1880–89.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -741,7 +769,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
