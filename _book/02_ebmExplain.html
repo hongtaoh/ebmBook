@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Calculate the Likelihood of Biomarker Measurements – Event Based Models for Disease Progression</title>
+<title>2&nbsp; EBM Explained – Event Based Models for Disease Progression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./gen.html" rel="next">
-<link href="./genModel.html" rel="prev">
+<link href="./03_gen.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -41,6 +41,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +113,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./calcLikelihood.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculate the Likelihood of Biomarker Measurements</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_ebmExplain.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM Explained</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -143,62 +146,56 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./genModel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM as A Generative Model</span></span></a>
+  <a href="./02_ebmExplain.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM Explained</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./calcLikelihood.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculate the Likelihood of Biomarker Measurements</span></span></a>
+  <a href="./03_gen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./gen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></span></a>
+  <a href="./04_estDistParams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estimate Distribution Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./estDistParams.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estimate Distribution Parameters</span></span></a>
+  <a href="./05_estStages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estimate Participant Stages</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./estStages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estimate Participant Stages</span></span></a>
+  <a href="./06_estS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estimate S</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./estS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate S</span></span></a>
+  <a href="./07_copKMeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./copKMeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span></a>
+  <a href="./08_softKMeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Soft K-Means</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./softKMeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Soft K-Means</span></span></a>
+  <a href="./09_conjugatePriors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Conjugate Priors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conjugatePriors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Conjugate Priors</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./aggResults.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Final Results</span></span></a>
+  <a href="./10_aggResults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Final Results</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -217,9 +214,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#known-k_j" id="toc-known-k_j" class="nav-link active" data-scroll-target="#known-k_j"><span class="header-section-number">3.1</span> Known <span class="math inline">\(k_j\)</span></a></li>
-  <li><a href="#unknown-k_j" id="toc-unknown-k_j" class="nav-link" data-scroll-target="#unknown-k_j"><span class="header-section-number">3.2</span> Unknown <span class="math inline">\(k_j\)</span></a></li>
-  <li><a href="#extension" id="toc-extension" class="nav-link" data-scroll-target="#extension"><span class="header-section-number">3.3</span> Extension</a></li>
+  <li><a href="#sec-calc-ll" id="toc-sec-calc-ll" class="nav-link active" data-scroll-target="#sec-calc-ll"><span class="header-section-number">2.1</span> Calculate the Likelihood of Biomarker Measurements</a>
+  <ul class="collapse">
+  <li><a href="#known-k_j" id="toc-known-k_j" class="nav-link" data-scroll-target="#known-k_j"><span class="header-section-number">2.1.1</span> Known <span class="math inline">\(k_j\)</span></a></li>
+  <li><a href="#unknown-k_j" id="toc-unknown-k_j" class="nav-link" data-scroll-target="#unknown-k_j"><span class="header-section-number">2.1.2</span> Unknown <span class="math inline">\(k_j\)</span></a></li>
+  <li><a href="#extension" id="toc-extension" class="nav-link" data-scroll-target="#extension"><span class="header-section-number">2.1.3</span> Extension</a></li>
+  </ul></li>
+  <li><a href="#sec-gen" id="toc-sec-gen" class="nav-link" data-scroll-target="#sec-gen"><span class="header-section-number">2.2</span> EBM as A Generative Model</a>
+  <ul class="collapse">
+  <li><a href="#generative-process" id="toc-generative-process" class="nav-link" data-scroll-target="#generative-process"><span class="header-section-number">2.2.1</span> Generative Process</a></li>
+  <li><a href="#graphical-explanation" id="toc-graphical-explanation" class="nav-link" data-scroll-target="#graphical-explanation"><span class="header-section-number">2.2.2</span> Graphical Explanation</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -228,7 +233,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-calc-ll" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculate the Likelihood of Biomarker Measurements</span></span></h1>
+<h1 class="title"><span id="ee" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM Explained</span></span></h1>
 </div>
 
 
@@ -245,17 +250,33 @@ window.Quarto = {
 </header>
 
 
-<p>Suppose we have a participant’s data, for example, <a href="genModel.html#fig-sample-data" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>. Now, the question is:</p>
+<section id="sec-calc-ll" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-calc-ll"><span class="header-section-number">2.1</span> Calculate the Likelihood of Biomarker Measurements</h2>
+<p>Suppose we have one participant’s measurement data of five biomarkers:</p>
+<div id="fig-sample-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sample-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/sample_data.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;2.1: Sample Data"><img src="img/sample_data.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sample-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Sample Data
+</figcaption>
+</figure>
+</div>
+<p>Now, the question is:</p>
 <blockquote class="blockquote">
 <p>What is the likelihood of this participant having this sequence of biomarker data, given that we know <span class="math inline">\(S, \theta, \phi\)</span>.</p>
 </blockquote>
+<p><span class="math inline">\(S\)</span> is the order in which different biomarkers get affected by the disease. It is the column of <span class="math inline">\(S_n\)</span> in the above data.</p>
+<p><span class="math inline">\(\theta\)</span> for each biomarker is the <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\alpha\)</span> of normal distribution of biomarker measurement when the biomarker is affected by the disease.</p>
+<p><span class="math inline">\(\phi\)</span> for each biomarker is the <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\alpha\)</span> of normal distribution of biomarker measurement when the biomarker is <strong>NOT</strong> affected by the disease.</p>
 <p>In the following, we explain how to calculate this likelihood in two scenartios: (1) known <span class="math inline">\(k_j\)</span> and (2) unknown <span class="math inline">\(k_j\)</span>.</p>
-<section id="known-k_j" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="known-k_j"><span class="header-section-number">3.1</span> Known <span class="math inline">\(k_j\)</span></h2>
+<section id="known-k_j" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="known-k_j"><span class="header-section-number">2.1.1</span> Known <span class="math inline">\(k_j\)</span></h3>
 <p><span id="eq-known-kj"><span class="math display">\[
 p(X_{j} | S, z_j = 1, k_j) = \underbrace{\prod_{i=1}^{k_j}{p(X_{S(i)j} \mid \theta_{S(i)} )}}_{\text{Affected biomarker likelihood}} \,
 \underbrace{\prod_{i=k_j+1}^N{p(X_{S(i)j} \mid \phi_{S(i)})}}_{\text{Non-affected biomarker likelihood}}
-\tag{3.1}\]</span></span></p>
+\tag{2.1}\]</span></span></p>
 <p>This equation compuates the likelihood of the observed biomarker data of a specific participant, given that we know the disease stage this patient is at (<span class="math inline">\(k_j\)</span>).</p>
 <ul>
 <li><p><span class="math inline">\(S\)</span> is an <strong>orded array</strong> of biomarkers that are affected by the disease, for example, <span class="math inline">\([b, a, d, c]\)</span>. This means that biomarker <span class="math inline">\(b\)</span> is affected at stage 1. At stage 2, biomarker <span class="math inline">\(b\)</span> and <span class="math inline">\(a\)</span> will be affected.</p></li>
@@ -277,15 +298,15 @@ p(X_{j} | S, z_j = 1, k_j) = \underbrace{\prod_{i=1}^{k_j}{p(X_{S(i)j} \mid \the
 <p>Note that <span class="math inline">\(p (X_b | \theta_b)\)</span> is probability density, a value of a probability density function at a specific point; so it is not a probability itself.</p>
 <p><strong>Multiplying multiple probability densities will give us a likelihood</strong>.</p>
 </section>
-<section id="unknown-k_j" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="unknown-k_j"><span class="header-section-number">3.2</span> Unknown <span class="math inline">\(k_j\)</span></h2>
+<section id="unknown-k_j" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="unknown-k_j"><span class="header-section-number">2.1.2</span> Unknown <span class="math inline">\(k_j\)</span></h3>
 <p><span id="eq-unknown-kj"><span class="math display">\[
 P(X_{j} | S) = \sum_{k_j=0}^N{P(k_j) p(X_{j} \mid S, k_j)}
-\tag{3.2}\]</span></span></p>
+\tag{2.2}\]</span></span></p>
 <p>Suppose we have the same information above, except that we do not know at which disease stage the patient is, i.e., we do not know <span class="math inline">\(k_j\)</span>. We have the observed biomarker data: <span class="math inline">\(X_j = [77, 45, 53, 90]\)</span>. And I wonder: what is the likelihood of seeing this specific ovserved data?</p>
 <p>We assume that all five stages (including <span class="math inline">\(k_j = 0\)</span>) are equally likely.</p>
 <p>We do not know <span class="math inline">\(k_j\)</span>, so the best option is to calculate the “average” likelihood of all the biomarker data.</p>
-<p>Based on <a href="#eq-known-kj" class="quarto-xref">Equation&nbsp;<span>3.1</span></a>, we can calculate the following:</p>
+<p>Based on <a href="#eq-known-kj" class="quarto-xref">Equation&nbsp;<span>2.1</span></a>, we can calculate the following:</p>
 <p><span class="math inline">\(L_1 = p(X_j | S, k_j = 1)\)</span></p>
 <p><span class="math inline">\(L_2 = p(X_j | S, k_j = 2)\)</span></p>
 <p><span class="math inline">\(L_3 = p(X_j | S, k_j = 3)\)</span></p>
@@ -313,11 +334,112 @@ Tip
 </div>
 </div>
 </section>
-<section id="extension" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="extension"><span class="header-section-number">3.3</span> Extension</h2>
+<section id="extension" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="extension"><span class="header-section-number">2.1.3</span> Extension</h3>
 <p>If we are more interested in the likelihood of a whole dataset consisting of all participants, we multiply all participants’ likelihood: <span class="math inline">\(L = L_{P_1} \times L_{P_2} \times L_{P_3} ... \times L_{P_j}\)</span>. Because this number tends to be very large, we take the natural log of <span class="math inline">\(L\)</span>, i.e., <span class="math inline">\(\ln(L)\)</span>.</p>
+</section>
+</section>
+<section id="sec-gen" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-gen"><span class="header-section-number">2.2</span> EBM as A Generative Model</h2>
+<p>We can use EBM to generate synthetic biomarker data if we know:</p>
+<ul>
+<li>The order (<span class="math inline">\(S\)</span>) in which different biomarkers get affected by the disease.</li>
+<li>Parameters (i.e., mean and standard deviation) of biomarkers’ distribution when they are affected (<span class="math inline">\(\theta\)</span>) and not affected (<span class="math inline">\(\phi\)</span>) by the disease.</li>
+<li>Stages (<span class="math inline">\(k_j\)</span>) that each participant is in.</li>
+</ul>
+<p>Data we can generate looks like <a href="#fig-sample-data" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>.</p>
+<p>This data is from a single participant.</p>
+<p>As we mentioned above, to generate this data, we need to know:</p>
+<ul>
+<li><span class="math inline">\(S\)</span>, i.e., the order of biomarkers. In the above example, <span class="math inline">\(S\)</span> is HIP-FCI, PCC-FCI, HIP-GMI, FUS-GMI, FUS-FCI.</li>
+<li><span class="math inline">\(\mathcal N(\theta_{\mu}, \theta_{\sigma})\)</span> and <span class="math inline">\(\mathcal N(\phi_{\mu}, \phi_{\sigma})\)</span> for each of the five biomarkers, which are known but not shown directly here in the dataset.</li>
+<li><span class="math inline">\(k_j\)</span>, which is 2 in the above example.</li>
+</ul>
+<p>We explain how this data is constructed in the following, column by column.</p>
+<p>First, the <code>participant</code> id is <span class="math inline">\(67\)</span>. The <code>biomarker</code> indicates each of the five biomarkers examined and measured. The <code>measurement</code> is the biomarkers’ measurement. <code>k_j</code> is the participant’s stage. If this stage is above 0, it means <code>Diseased = True</code>. <code>S_n</code> indicates the <span class="math inline">\(n\)</span>-th rank in the order. If <code>k_j &lt; S_n</code>, it means the participant’s stage hasn’t reached that biomarker’s rank; therefore, this biomarker is <code>not affected</code>. If <code>k_j &gt;= S_n</code>, then this biomarker is <code>affected</code>.</p>
+<p>If a biomarker is <code>affected</code>, then its measurement comes from <span class="math inline">\(\mathcal N(\theta_{\mu}, \theta_{\sigma})\)</span> of that biomarker; if <code>not_affected</code>, <span class="math inline">\(\mathcal N(\phi_{\mu}, \phi_{\sigma})\)</span>.</p>
+<section id="generative-process" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="generative-process"><span class="header-section-number">2.2.1</span> Generative Process</h3>
+<p>The generative process of biomarker measurements can be described as:</p>
+<p><span id="eq-gen"><span class="math display">\[
+X_{nj} \mid S, k_j, \theta_n, \phi_n \sim I(z_j = 1) \bigg[ I(S(n) \leq k_j) \, p(X_{nj} \mid \theta_{n}) + I(S(n) &gt; k_j) \, p(X_{nj} \mid \phi_{n}) \bigg] \\
++ \left(1 - I(z_j = 1) \right) p(X_{nj} \mid \phi_{n})
+\tag{2.3}\]</span></span></p>
+<!-- \begin{align*}
+X_{nj} \mid S, k_j, \theta_n, \phi_n &\sim I(z_j == 1) \bigg[ I(S(n) \leq k_j) \, p(X_{nj} \mid \theta_{n}) + I(S(n) > k_j) \, p(X_{nj} \mid \phi_{n}) \bigg] \\
+&\quad + \left(1 - I(z_j == 1) \right) p(X_{nj} \mid \phi_{n})
+\end{align*} -->
+<p>This model says that given that we know <span class="math inline">\(S, k_j, \theta_n, \text{and } \phi_n\)</span>, we can draw the biomarker measurement from a distribution.</p>
+<p><span class="math inline">\(S \sim \mathrm{UniformPermutation}(\cdot)\)</span></p>
+<p><span class="math inline">\(S\)</span> follows a distribution of uniform permutation. That means the ordering of biomarkers is random.</p>
+<p><span class="math inline">\(k_j \sim \mathrm{DiscreteUniform}(N)\)</span></p>
+<p><span class="math inline">\(k_j\)</span> follows a discrete uniform distribution, which means a participant is equally likely to fall in a progression stage (e.g., from <span class="math inline">\(0\)</span> to <span class="math inline">\(5\)</span>, where <span class="math inline">\(0\)</span> indicate this participant is healthy.)</p>
+</section>
+<section id="graphical-explanation" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="graphical-explanation"><span class="header-section-number">2.2.2</span> Graphical Explanation</h3>
+<p>In the following, we explain the generative model in three different scenarios using <a href="https://en.wikipedia.org/wiki/Graphical_model">graphical models</a>: (1) All participants are healthy; (2) Both healthy and diseased participants, but all biomarkers are affected among diseased people; (3) Both healthy and diseased participants, but we do not whether biomarkers are affected or not among patients.</p>
+<section id="scenario-1" class="level4" data-number="2.2.2.1">
+<h4 data-number="2.2.2.1" class="anchored" data-anchor-id="scenario-1"><span class="header-section-number">2.2.2.1</span> Scenario 1</h4>
+<p>If all participants are healthy:</p>
+<p><span id="eq-gen-s1"><span class="math display">\[
+X_{nj} \sim p(X_{nj} \mid \phi_{n})
+\tag{2.4}\]</span></span></p>
+<p>Where</p>
+<p><span class="math inline">\(X_{nj}\)</span> indicates the measurement of biomarker <span class="math inline">\(n\)</span> in participant <span class="math inline">\(j\)</span>.</p>
+<p><span class="math inline">\(\phi_{n}\)</span> represents <span class="math inline">\(\mathcal N(\phi_{\mu}, \phi_{\sigma})\)</span> for biomarker <span class="math inline">\(n\)</span>.</p>
+<p>The graphical model would look like:</p>
+<div id="fig-g1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-g1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/g1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.2: Graphical Model of Scenario 1"><img src="img/g1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-g1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Graphical Model of Scenario 1
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="scenario-2" class="level4" data-number="2.2.2.2">
+<h4 data-number="2.2.2.2" class="anchored" data-anchor-id="scenario-2"><span class="header-section-number">2.2.2.2</span> Scenario 2</h4>
+<p>If we have oth diseased and healthy participants, and all biomarkers are affected among diseased participants.</p>
+<p><span id="eq-gen-s2"><span class="math display">\[
+X_{nj} \sim I(z_j == 1) p(X_{nj} \mid \theta_n) + (1-I(z_j == 1))p(X_{nj} \mid \phi_n)
+\tag{2.5}\]</span></span></p>
+<p>Where:</p>
+<p><span class="math inline">\(z_j = 1\)</span> indicates this participant is diseased and <span class="math inline">\(z_j = 1\)</span> represents a healthy participant.</p>
+<p><span class="math inline">\(I(True) = 1\)</span> and <span class="math inline">\(I(False) = 0\)</span>.</p>
+<p><span class="math inline">\(\theta_{n}\)</span> represents <span class="math inline">\(\mathcal N(\theta_{\mu}, \theta_{\sigma})\)</span> for biomarker <span class="math inline">\(n\)</span>.</p>
+<p>The graphical model would look like:</p>
+<div id="fig-g2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-g2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/g2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2.3: Graphical Model of Scenario 2"><img src="img/g2.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-g2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Graphical Model of Scenario 2
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="scenario-3" class="level4" data-number="2.2.2.3">
+<h4 data-number="2.2.2.3" class="anchored" data-anchor-id="scenario-3"><span class="header-section-number">2.2.2.3</span> Scenario 3</h4>
+<p>If we have both healthy and diseased participants, but we do not whether biomarkers are affected or not among patients, see <a href="#eq-gen" class="quarto-xref">Equation&nbsp;<span>2.3</span></a>.</p>
+<p>This is the model in usual cases.</p>
+<p>The graphical model looks like:</p>
+<div id="fig-g3" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-g3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/g3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2.4: Graphical Model of Scenario 3"><img src="img/g3.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-g3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.4: Graphical Model of Scenario 3
+</figcaption>
+</figure>
+</div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -743,17 +865,49 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./genModel.html" class="pagination-link" aria-label="EBM as A Generative Model">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM as A Generative Model</span></span>
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./gen.html" class="pagination-link" aria-label="Generate Synthetic Data">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03_gen.html" class="pagination-link" aria-label="Generate Synthetic Data">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

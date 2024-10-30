@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Generate Synthetic Data – Event Based Models for Disease Progression</title>
+<title>3&nbsp; Generate Synthetic Data – Event Based Models for Disease Progression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,8 +84,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./estDistParams.html" rel="next">
-<link href="./calcLikelihood.html" rel="prev">
+<link href="./04_estDistParams.html" rel="next">
+<link href="./02_ebmExplain.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -170,7 +170,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./gen.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_gen.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -203,62 +203,56 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./genModel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM as A Generative Model</span></span></a>
+  <a href="./02_ebmExplain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM Explained</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./calcLikelihood.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculate the Likelihood of Biomarker Measurements</span></span></a>
+  <a href="./03_gen.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./gen.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></span></a>
+  <a href="./04_estDistParams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estimate Distribution Parameters</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./estDistParams.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estimate Distribution Parameters</span></span></a>
+  <a href="./05_estStages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estimate Participant Stages</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./estStages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estimate Participant Stages</span></span></a>
+  <a href="./06_estS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Estimate S</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./estS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate S</span></span></a>
+  <a href="./07_copKMeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./copKMeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span></a>
+  <a href="./08_softKMeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Soft K-Means</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./softKMeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Soft K-Means</span></span></a>
+  <a href="./09_conjugatePriors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Conjugate Priors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conjugatePriors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Conjugate Priors</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./aggResults.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Final Results</span></span></a>
+  <a href="./10_aggResults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Final Results</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -277,13 +271,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#obtain-estimated-distribution-parameters" id="toc-obtain-estimated-distribution-parameters" class="nav-link active" data-scroll-target="#obtain-estimated-distribution-parameters"><span class="header-section-number">4.1</span> Obtain Estimated Distribution Parameters</a></li>
-  <li><a href="#the-generating-process" id="toc-the-generating-process" class="nav-link" data-scroll-target="#the-generating-process"><span class="header-section-number">4.2</span> The Generating Process</a></li>
-  <li><a href="#visualize-synthetic-data" id="toc-visualize-synthetic-data" class="nav-link" data-scroll-target="#visualize-synthetic-data"><span class="header-section-number">4.3</span> Visualize Synthetic Data</a>
+  <li><a href="#obtain-estimated-distribution-parameters" id="toc-obtain-estimated-distribution-parameters" class="nav-link active" data-scroll-target="#obtain-estimated-distribution-parameters"><span class="header-section-number">3.1</span> Obtain Estimated Distribution Parameters</a></li>
+  <li><a href="#the-generating-process" id="toc-the-generating-process" class="nav-link" data-scroll-target="#the-generating-process"><span class="header-section-number">3.2</span> The Generating Process</a></li>
+  <li><a href="#visualize-synthetic-data" id="toc-visualize-synthetic-data" class="nav-link" data-scroll-target="#visualize-synthetic-data"><span class="header-section-number">3.3</span> Visualize Synthetic Data</a>
   <ul class="collapse">
-  <li><a href="#distribution-of-all-biomarker-values" id="toc-distribution-of-all-biomarker-values" class="nav-link" data-scroll-target="#distribution-of-all-biomarker-values"><span class="header-section-number">4.3.1</span> Distribution of all biomarker values</a></li>
-  <li><a href="#distribution-of-a-specific-biomarker" id="toc-distribution-of-a-specific-biomarker" class="nav-link" data-scroll-target="#distribution-of-a-specific-biomarker"><span class="header-section-number">4.3.2</span> Distribution of A Specific Biomarker</a></li>
-  <li><a href="#looking-into-a-specific-participant" id="toc-looking-into-a-specific-participant" class="nav-link" data-scroll-target="#looking-into-a-specific-participant"><span class="header-section-number">4.3.3</span> Looking into A Specific Participant</a></li>
+  <li><a href="#distribution-of-all-biomarker-values" id="toc-distribution-of-all-biomarker-values" class="nav-link" data-scroll-target="#distribution-of-all-biomarker-values"><span class="header-section-number">3.3.1</span> Distribution of all biomarker values</a></li>
+  <li><a href="#distribution-of-a-specific-biomarker" id="toc-distribution-of-a-specific-biomarker" class="nav-link" data-scroll-target="#distribution-of-a-specific-biomarker"><span class="header-section-number">3.3.2</span> Distribution of A Specific Biomarker</a></li>
+  <li><a href="#looking-into-a-specific-participant" id="toc-looking-into-a-specific-participant" class="nav-link" data-scroll-target="#looking-into-a-specific-participant"><span class="header-section-number">3.3.3</span> Looking into A Specific Participant</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -293,7 +287,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Generate Synthetic Data</span></h1>
 </div>
 
 
@@ -311,27 +305,27 @@ window.Quarto = {
 
 
 <p>In this chapter, we talk about how we generate the synthetic data of participants’ biomarker measurements. These data are used to test our algorithms.</p>
-<section id="obtain-estimated-distribution-parameters" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="obtain-estimated-distribution-parameters"><span class="header-section-number">4.1</span> Obtain Estimated Distribution Parameters</h2>
-<p>In <a href="genModel.html" class="quarto-xref"><span>Chapter 2</span></a>, we mentioned that EBM can be used as a generative model and we need to know <span class="math inline">\(S, \theta, \phi\)</span> and <span class="math inline">\(k_j\)</span>.</p>
+<section id="obtain-estimated-distribution-parameters" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="obtain-estimated-distribution-parameters"><span class="header-section-number">3.1</span> Obtain Estimated Distribution Parameters</h2>
+<p>In <a href="02_ebmExplain.html#sec-gen" class="quarto-xref"><span>Section 2.2</span></a>, we mentioned that EBM can be used as a generative model and we need to know <span class="math inline">\(S, \theta, \phi\)</span> and <span class="math inline">\(k_j\)</span>.</p>
 <p>First, we obtained <span class="math inline">\(S, \theta, \phi\)</span> from <span class="citation" data-cites="chen2016staging">Chen et al. (<a href="references.html#ref-chen2016staging" role="doc-biblioref">2016</a>)</span>:</p>
 <div id="fig-chen1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chen1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="img/chen1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;4.1: Theta and Phi from Chen’s Paper"><img src="img/chen1.png" class="img-fluid figure-img"></a>
+<a href="img/chen1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Theta and Phi from Chen’s Paper"><img src="img/chen1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chen1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.1: Theta and Phi from Chen’s Paper
+Figure&nbsp;3.1: Theta and Phi from Chen’s Paper
 </figcaption>
 </figure>
 </div>
 <div id="fig-chen2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chen2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="img/chen2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;4.2: S from Chen’s Paper"><img src="img/chen2.png" class="img-fluid figure-img"></a>
+<a href="img/chen2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;3.2: S from Chen’s Paper"><img src="img/chen2.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chen2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.2: S from Chen’s Paper
+Figure&nbsp;3.2: S from Chen’s Paper
 </figcaption>
 </figure>
 </div>
@@ -521,19 +515,19 @@ Figure&nbsp;4.2: S from Chen’s Paper
 <div id="fig-eval-theta-phi-estimations" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eval-theta-phi-estimations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="gen_files/figure-html/fig-eval-theta-phi-estimations-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;4.3: evaluate theta and phi estimations"><img src="gen_files/figure-html/fig-eval-theta-phi-estimations-output-1.png" class="img-fluid figure-img"></a>
+<a href="03_gen_files/figure-html/fig-eval-theta-phi-estimations-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3.3: evaluate theta and phi estimations"><img src="03_gen_files/figure-html/fig-eval-theta-phi-estimations-output-1.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eval-theta-phi-estimations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.3: evaluate theta and phi estimations
+Figure&nbsp;3.3: evaluate theta and phi estimations
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>You can compare this to <a href="#fig-chen1" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>.</p>
+<p>You can compare this to <a href="#fig-chen1" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>.</p>
 </section>
-<section id="the-generating-process" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="the-generating-process"><span class="header-section-number">4.2</span> The Generating Process</h2>
+<section id="the-generating-process" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-generating-process"><span class="header-section-number">3.2</span> The Generating Process</h2>
 <p>In the following, we explain our data generation process.</p>
 <p>We have the following parameters:</p>
 <p><span class="math inline">\(J\)</span>: Number of participants.</p>
@@ -694,8 +688,8 @@ Figure&nbsp;4.3: evaluate theta and phi estimations
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'Done for J=</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="visualize-synthetic-data" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="visualize-synthetic-data"><span class="header-section-number">4.3</span> Visualize Synthetic Data</h2>
+<section id="visualize-synthetic-data" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="visualize-synthetic-data"><span class="header-section-number">3.3</span> Visualize Synthetic Data</h2>
 <p>Above, we have generated 750 datasets, named in the fashion of <code>150|200_3</code>, which means the third dataset when <span class="math inline">\(j = 200\)</span> and <span class="math inline">\(r = 0.75\)</span>.</p>
 <p>Next, we try to visualize this dataset.</p>
 <div id="cell-13" class="cell" data-execution_count="23">
@@ -782,8 +776,8 @@ Figure&nbsp;4.3: evaluate theta and phi estimations
 </div>
 </div>
 <p>This dataset has <span class="math inline">\(2000\)</span> rows because we have <span class="math inline">\(200\)</span> participants and <span class="math inline">\(10\)</span> biomarkers.</p>
-<section id="distribution-of-all-biomarker-values" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="distribution-of-all-biomarker-values"><span class="header-section-number">4.3.1</span> Distribution of all biomarker values</h3>
+<section id="distribution-of-all-biomarker-values" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="distribution-of-all-biomarker-values"><span class="header-section-number">3.3.1</span> Distribution of all biomarker values</h3>
 <div id="cell-fig-dist-biomarker-vals" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
@@ -813,18 +807,18 @@ Figure&nbsp;4.3: evaluate theta and phi estimations
 <div id="fig-dist-biomarker-vals" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dist-biomarker-vals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="gen_files/figure-html/fig-dist-biomarker-vals-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;4.4: Distribution of biomarker measurments"><img src="gen_files/figure-html/fig-dist-biomarker-vals-output-1.png" width="723" height="504" class="figure-img"></a>
+<a href="03_gen_files/figure-html/fig-dist-biomarker-vals-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;3.4: Distribution of biomarker measurments"><img src="03_gen_files/figure-html/fig-dist-biomarker-vals-output-1.png" width="723" height="504" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-biomarker-vals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.4: Distribution of biomarker measurments
+Figure&nbsp;3.4: Distribution of biomarker measurments
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="distribution-of-a-specific-biomarker" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="distribution-of-a-specific-biomarker"><span class="header-section-number">4.3.2</span> Distribution of A Specific Biomarker</h3>
+<section id="distribution-of-a-specific-biomarker" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="distribution-of-a-specific-biomarker"><span class="header-section-number">3.3.2</span> Distribution of A Specific Biomarker</h3>
 <div id="cell-fig-dist-specific-biomarker-vals" class="cell" data-execution_count="26">
 <details class="code-fold">
 <summary>Code</summary>
@@ -855,18 +849,18 @@ Figure&nbsp;4.4: Distribution of biomarker measurments
 <div id="fig-dist-specific-biomarker-vals" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dist-specific-biomarker-vals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="gen_files/figure-html/fig-dist-specific-biomarker-vals-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;4.5: Distribution of HIP-FCI measurements, compring bewteen affected and non-affected group"><img src="gen_files/figure-html/fig-dist-specific-biomarker-vals-output-1.png" width="657" height="302" class="figure-img"></a>
+<a href="03_gen_files/figure-html/fig-dist-specific-biomarker-vals-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;3.5: Distribution of HIP-FCI measurements, compring bewteen affected and non-affected group"><img src="03_gen_files/figure-html/fig-dist-specific-biomarker-vals-output-1.png" width="657" height="302" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-specific-biomarker-vals-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.5: Distribution of HIP-FCI measurements, compring bewteen affected and non-affected group
+Figure&nbsp;3.5: Distribution of HIP-FCI measurements, compring bewteen affected and non-affected group
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="looking-into-a-specific-participant" class="level3" data-number="4.3.3">
-<h3 data-number="4.3.3" class="anchored" data-anchor-id="looking-into-a-specific-participant"><span class="header-section-number">4.3.3</span> Looking into A Specific Participant</h3>
+<section id="looking-into-a-specific-participant" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="looking-into-a-specific-participant"><span class="header-section-number">3.3.3</span> Looking into A Specific Participant</h3>
 <div id="cell-20" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pidx <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>p_data <span class="op">=</span> df[df.participant <span class="op">==</span> pidx]</span>
@@ -1015,10 +1009,10 @@ Figure&nbsp;4.5: Distribution of HIP-FCI measurements, compring bewteen affected
 <div id="fig-dist-biomarker-vals-for-participant" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dist-biomarker-vals-for-participant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="gen_files/figure-html/fig-dist-biomarker-vals-for-participant-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;4.6: Distribution of biomarker measurements for a specific participant"><img src="gen_files/figure-html/fig-dist-biomarker-vals-for-participant-output-1.png" width="424" height="401" class="figure-img"></a>
+<a href="03_gen_files/figure-html/fig-dist-biomarker-vals-for-participant-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;3.6: Distribution of biomarker measurements for a specific participant"><img src="03_gen_files/figure-html/fig-dist-biomarker-vals-for-participant-output-1.png" width="424" height="401" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dist-biomarker-vals-for-participant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4.6: Distribution of biomarker measurements for a specific participant
+Figure&nbsp;3.6: Distribution of biomarker measurements for a specific participant
 </figcaption>
 </figure>
 </div>
@@ -1457,18 +1451,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./calcLikelihood.html" class="pagination-link" aria-label="Calculate the Likelihood of Biomarker Measurements">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Calculate the Likelihood of Biomarker Measurements</span></span>
+      <a href="./02_ebmExplain.html" class="pagination-link" aria-label="EBM Explained">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">EBM Explained</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./estDistParams.html" class="pagination-link" aria-label="Estimate Distribution Parameters">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Estimate Distribution Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04_estDistParams.html" class="pagination-link" aria-label="Estimate Distribution Parameters">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estimate Distribution Parameters</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -28,7 +28,7 @@ We have several assumptions in EBM:
 
 ## Pay Attention
 
-The third assumption, i.e., Gaussian approximation, often will be violated in raw biomarker data. For example, measurements of the concentration of amyloid proteins associated with Alzheimer's disease are not necessarily non-negative. Further, their resolution has changed over the decades. 
+The third assumption, i.e., Gaussian approximation, often will be violated in raw biomarker data. For example, measurements of the concentration of amyloid proteins associated with Alzheimer's disease are necessarily non-negative. Further, their resolution has changed over the decades. 
 
 However, for the purpose of our current method, we assume this is true. There are nonparametric versions of the EBM, for example, [KDE EBM](https://github.com/ucl-pond/kde_ebm)
 

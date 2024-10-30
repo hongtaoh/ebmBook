@@ -7,16 +7,15 @@ book:
   date: "10/13/2024"
   chapters:
     - index.md
-    - genModel.ipynb
-    - calcLikelihood.ipynb
-    - gen.ipynb
-    - estDistParams.ipynb
-    - estStages.ipynb
-    - estS.ipynb
-    - copKMeans.ipynb
-    - softKMeans.ipynb
-    - conjugatePriors.ipynb
-    - aggResults.ipynb
+    - 02_ebmExplain.ipynb
+    - 03_gen.ipynb
+    - 04_estDistParams.ipynb
+    - 05_estStages.ipynb
+    - 06_estS.ipynb
+    - 07_copKMeans.ipynb
+    - 08_softKMeans.ipynb
+    - 09_conjugatePriors.ipynb
+    - 10_aggResults.ipynb
     - references.qmd
 
 bibliography: references.bib

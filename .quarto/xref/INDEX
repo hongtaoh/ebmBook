@@ -58,5 +58,32 @@
   },
   "aggResults.ipynb": {
     "aggResults.html": "4107b04f"
+  },
+  "02_ebmExplain.ipynb": {
+    "02_ebmExplain.html": "a40c2710"
+  },
+  "03_gen.ipynb": {
+    "03_gen.html": "cfed17f7"
+  },
+  "04_estDistParams.ipynb": {
+    "04_estDistParams.html": "b8273189"
+  },
+  "05_estStages.ipynb": {
+    "05_estStages.html": "ebb19266"
+  },
+  "06_estS.ipynb": {
+    "06_estS.html": "4af0fc25"
+  },
+  "07_copKMeans.ipynb": {
+    "07_copKMeans.html": "3f4c51b4"
+  },
+  "08_softKMeans.ipynb": {
+    "08_softKMeans.html": "b87bbbcf"
+  },
+  "09_conjugatePriors.ipynb": {
+    "09_conjugatePriors.html": "528188df"
+  },
+  "10_aggResults.ipynb": {
+    "10_aggResults.html": "adc01f29"
   }
 }
