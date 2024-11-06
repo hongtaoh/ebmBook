@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./09_conjugatePriors.html" rel="next">
-<link href="./07_copKMeans.html" rel="prev">
+<link href="./07_simpleClustering.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -210,8 +210,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_copKMeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span></a>
+  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -292,7 +292,7 @@ Figure&nbsp;8.1: Soft K-Means Algorithm
 </div>
 <section id="implementation" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="implementation"><span class="header-section-number">8.1</span> Implementation</h2>
-<div id="cell-1" class="cell" data-execution_count="5">
+<div id="cell-1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> utils </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json </span>
@@ -303,7 +303,9 @@ Figure&nbsp;8.1: Soft K-Means Algorithm
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-2" class="cell" data-execution_count="6">
+<div id="cell-2" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_soft_kmeans_for_biomarker(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        data,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        biomarker,</span>
@@ -595,8 +597,9 @@ Figure&nbsp;8.1: Soft K-Means Algorithm
 <span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print("done!")</span></span>
 <span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_current_accepted_order_dicts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="cell-3" class="cell" data-execution_count="7">
+<div id="cell-3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_shuffle <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>burn_in <span class="op">=</span> <span class="dv">2</span></span>
@@ -685,11 +688,11 @@ Processing with j=200, r=0.75, m=3
 Data file found: /Users/hongtaoh/Desktop/github/ebmBook/data/150|200_3.csv</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/wx/xz5y_06d15q5pgl_mhv76c8r0000gn/T/ipykernel_23669/1838063648.py:260: RuntimeWarning: overflow encountered in exp
+<pre><code>/var/folders/wx/xz5y_06d15q5pgl_mhv76c8r0000gn/T/ipykernel_12345/1007084789.py:261: RuntimeWarning: overflow encountered in exp
   prob_of_accepting_new_order = np.exp(</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>iteration 10 done, current accepted likelihood: -4550.744705628294, current acceptance ratio is 60.00 %, current accepted order is dict_values([6, 3, 9, 2, 7, 1, 5, 4, 8, 10]), 
+<pre><code>iteration 10 done, current accepted likelihood: -4558.471198243365, current acceptance ratio is 100.00 %, current accepted order is dict_values([5, 9, 3, 4, 2, 1, 6, 8, 7, 10]), 
 150|200_3 is done! Results written to /Users/hongtaoh/Desktop/github/ebmBook/soft_kmeans/temp_json_results/temp_results_200_0.75_3.json</code></pre>
 </div>
 </div>
@@ -707,10 +710,10 @@ Figure&nbsp;8.2: Result of Soft K-Means
 </figcaption>
 </figure>
 </div>
-<div id="cell-5" class="cell" data-execution_count="8">
+<div id="cell-5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>{'150|200': [0.15555555555555553]}</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>{'150|200': [-0.15555555555555553]}</code></pre>
 </div>
 </div>
 
@@ -1140,8 +1143,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./07_copKMeans.html" class="pagination-link" aria-label="Estimate $S$ with Constrained K-Means">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span>
+      <a href="./07_simpleClustering.html" class="pagination-link" aria-label="Estimate $S$ with Simple Clustering">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1151,7 +1154,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

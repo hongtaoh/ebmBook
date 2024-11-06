@@ -210,8 +210,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_copKMeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span></a>
+  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -305,6 +305,8 @@ Figure&nbsp;9.1: Conjugate Priors Algorithm
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="cell-2" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate_params_exact(m0, n0, s0_sq, v0, data):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''This is to estimate means and vars based on conjugate priors</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Inputs:</span></span>
@@ -561,6 +563,7 @@ Figure&nbsp;9.1: Conjugate Priors Algorithm
 <span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>            )</span>
 <span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_current_accepted_order_dicts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="cell-3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_shuffle <span class="op">=</span> <span class="dv">2</span></span>
@@ -670,7 +673,7 @@ Figure&nbsp;9.2: Result of Conjugate Priors
 <div id="cell-5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>{'150|200': [0.15555555555555553]}</code></pre>
+<pre><code>{'150|200': [0.28888888888888886]}</code></pre>
 </div>
 </div>
 

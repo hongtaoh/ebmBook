@@ -233,8 +233,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_copKMeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span></a>
+  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -307,7 +307,7 @@ window.Quarto = {
 <p>In this chapter, we talk about how we generate the synthetic data of participants’ biomarker measurements. These data are used to test our algorithms.</p>
 <section id="obtain-estimated-distribution-parameters" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="obtain-estimated-distribution-parameters"><span class="header-section-number">3.1</span> Obtain Estimated Distribution Parameters</h2>
-<p>In <a href="02_ebmExplain.html#sec-gen" class="quarto-xref"><span>Section 2.2</span></a>, we mentioned that EBM can be used as a generative model and we need to know <span class="math inline">\(S, \theta, \phi\)</span> and <span class="math inline">\(k_j\)</span>.</p>
+<p>In <a href="02_ebmExplain.html#sec-gen" class="quarto-xref"><span>Section 2.3.2</span></a>, we mentioned that EBM can be used as a generative model and we need to know <span class="math inline">\(S, \theta, \phi\)</span> and <span class="math inline">\(k_j\)</span>.</p>
 <p>First, we obtained <span class="math inline">\(S, \theta, \phi\)</span> from <span class="citation" data-cites="chen2016staging">Chen et al. (<a href="references.html#ref-chen2016staging" role="doc-biblioref">2016</a>)</span>:</p>
 <div id="fig-chen1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1462,7 +1462,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

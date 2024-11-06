@@ -176,8 +176,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_copKMeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Constrained K-Means</span></span></a>
+  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -214,16 +214,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-calc-ll" id="toc-sec-calc-ll" class="nav-link active" data-scroll-target="#sec-calc-ll"><span class="header-section-number">2.1</span> Calculate the Likelihood of Biomarker Measurements</a>
+  <li><a href="#overview-of-event-based-model-ebm" id="toc-overview-of-event-based-model-ebm" class="nav-link active" data-scroll-target="#overview-of-event-based-model-ebm"><span class="header-section-number">2.1</span> Overview of Event-Based Model (EBM)</a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><span class="header-section-number">2.2</span> Key Concepts</a></li>
+  <li><a href="#ebm-applications" id="toc-ebm-applications" class="nav-link" data-scroll-target="#ebm-applications"><span class="header-section-number">2.3</span> EBM Applications</a>
   <ul class="collapse">
-  <li><a href="#known-k_j" id="toc-known-k_j" class="nav-link" data-scroll-target="#known-k_j"><span class="header-section-number">2.1.1</span> Known <span class="math inline">\(k_j\)</span></a></li>
-  <li><a href="#unknown-k_j" id="toc-unknown-k_j" class="nav-link" data-scroll-target="#unknown-k_j"><span class="header-section-number">2.1.2</span> Unknown <span class="math inline">\(k_j\)</span></a></li>
-  <li><a href="#extension" id="toc-extension" class="nav-link" data-scroll-target="#extension"><span class="header-section-number">2.1.3</span> Extension</a></li>
-  </ul></li>
-  <li><a href="#sec-gen" id="toc-sec-gen" class="nav-link" data-scroll-target="#sec-gen"><span class="header-section-number">2.2</span> EBM as A Generative Model</a>
-  <ul class="collapse">
-  <li><a href="#generative-process" id="toc-generative-process" class="nav-link" data-scroll-target="#generative-process"><span class="header-section-number">2.2.1</span> Generative Process</a></li>
-  <li><a href="#graphical-explanation" id="toc-graphical-explanation" class="nav-link" data-scroll-target="#graphical-explanation"><span class="header-section-number">2.2.2</span> Graphical Explanation</a></li>
+  <li><a href="#sec-calc-ll" id="toc-sec-calc-ll" class="nav-link" data-scroll-target="#sec-calc-ll"><span class="header-section-number">2.3.1</span> Calculate the Likelihood of Biomarker Measurements</a></li>
+  <li><a href="#sec-gen" id="toc-sec-gen" class="nav-link" data-scroll-target="#sec-gen"><span class="header-section-number">2.3.2</span> EBM as A Generative Model</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -250,8 +246,25 @@ window.Quarto = {
 </header>
 
 
-<section id="sec-calc-ll" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="sec-calc-ll"><span class="header-section-number">2.1</span> Calculate the Likelihood of Biomarker Measurements</h2>
+<section id="overview-of-event-based-model-ebm" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="overview-of-event-based-model-ebm"><span class="header-section-number">2.1</span> Overview of Event-Based Model (EBM)</h2>
+<p>EBM provides a statistical model to understand disease progression through biomarkers. Using EBM, we can estimate the likelihood of biomarker measurements or generate synthetic data of biomarker measurements.</p>
+</section>
+<section id="key-concepts" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">2.2</span> Key Concepts</h2>
+<p>Suppose the order in which a disease affects biomarkers is <span class="math inline">\(S\)</span>. For example, <span class="math inline">\(S\)</span> = [‘biomarker1’, ‘biomarker3’, ‘biomarker2’].</p>
+<p>We also suppose biomarker measurements following Gaussian distributions. When a biomarker is affected by the disease, the parameters, i.e., mean and standard deviation of its normal distribution is called <span class="math inline">\(\theta\)</span>. When it is not affected by the disease, the parameters are called <span class="math inline">\(\phi\)</span>.</p>
+<p>The disease stage of a participant is <span class="math inline">\(k_j\)</span>. To simplify things, let us assume the total number of disease stages is equal to the number of biomarkers.</p>
+</section>
+<section id="ebm-applications" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="ebm-applications"><span class="header-section-number">2.3</span> EBM Applications</h2>
+<p>EBM can be used in two ways:</p>
+<ol type="1">
+<li>Calculate the likelihood of biomarker measurements</li>
+<li>Generate biomarker measurements</li>
+</ol>
+<section id="sec-calc-ll" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="sec-calc-ll"><span class="header-section-number">2.3.1</span> Calculate the Likelihood of Biomarker Measurements</h3>
 <p>Suppose we have one participant’s measurement data of five biomarkers:</p>
 <div id="fig-sample-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -271,8 +284,8 @@ Figure&nbsp;2.1: Sample Data
 <p><span class="math inline">\(\theta\)</span> for each biomarker is the <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\alpha\)</span> of normal distribution of biomarker measurement when the biomarker is affected by the disease.</p>
 <p><span class="math inline">\(\phi\)</span> for each biomarker is the <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\alpha\)</span> of normal distribution of biomarker measurement when the biomarker is <strong>NOT</strong> affected by the disease.</p>
 <p>In the following, we explain how to calculate this likelihood in two scenartios: (1) known <span class="math inline">\(k_j\)</span> and (2) unknown <span class="math inline">\(k_j\)</span>.</p>
-<section id="known-k_j" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="known-k_j"><span class="header-section-number">2.1.1</span> Known <span class="math inline">\(k_j\)</span></h3>
+<section id="known-k_j" class="level4" data-number="2.3.1.1">
+<h4 data-number="2.3.1.1" class="anchored" data-anchor-id="known-k_j"><span class="header-section-number">2.3.1.1</span> Known <span class="math inline">\(k_j\)</span></h4>
 <p><span id="eq-known-kj"><span class="math display">\[
 p(X_{j} | S, z_j = 1, k_j) = \underbrace{\prod_{i=1}^{k_j}{p(X_{S(i)j} \mid \theta_{S(i)} )}}_{\text{Affected biomarker likelihood}} \,
 \underbrace{\prod_{i=k_j+1}^N{p(X_{S(i)j} \mid \phi_{S(i)})}}_{\text{Non-affected biomarker likelihood}}
@@ -298,8 +311,8 @@ p(X_{j} | S, z_j = 1, k_j) = \underbrace{\prod_{i=1}^{k_j}{p(X_{S(i)j} \mid \the
 <p>Note that <span class="math inline">\(p (X_b | \theta_b)\)</span> is probability density, a value of a probability density function at a specific point; so it is not a probability itself.</p>
 <p><strong>Multiplying multiple probability densities will give us a likelihood</strong>.</p>
 </section>
-<section id="unknown-k_j" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="unknown-k_j"><span class="header-section-number">2.1.2</span> Unknown <span class="math inline">\(k_j\)</span></h3>
+<section id="unknown-k_j" class="level4" data-number="2.3.1.2">
+<h4 data-number="2.3.1.2" class="anchored" data-anchor-id="unknown-k_j"><span class="header-section-number">2.3.1.2</span> Unknown <span class="math inline">\(k_j\)</span></h4>
 <p><span id="eq-unknown-kj"><span class="math display">\[
 P(X_{j} | S) = \sum_{k_j=0}^N{P(k_j) p(X_{j} \mid S, k_j)}
 \tag{2.2}\]</span></span></p>
@@ -334,13 +347,13 @@ Tip
 </div>
 </div>
 </section>
-<section id="extension" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="extension"><span class="header-section-number">2.1.3</span> Extension</h3>
+<section id="extension" class="level4" data-number="2.3.1.3">
+<h4 data-number="2.3.1.3" class="anchored" data-anchor-id="extension"><span class="header-section-number">2.3.1.3</span> Extension</h4>
 <p>If we are more interested in the likelihood of a whole dataset consisting of all participants, we multiply all participants’ likelihood: <span class="math inline">\(L = L_{P_1} \times L_{P_2} \times L_{P_3} ... \times L_{P_j}\)</span>. Because this number tends to be very large, we take the natural log of <span class="math inline">\(L\)</span>, i.e., <span class="math inline">\(\ln(L)\)</span>.</p>
 </section>
 </section>
-<section id="sec-gen" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-gen"><span class="header-section-number">2.2</span> EBM as A Generative Model</h2>
+<section id="sec-gen" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="sec-gen"><span class="header-section-number">2.3.2</span> EBM as A Generative Model</h3>
 <p>We can use EBM to generate synthetic biomarker data if we know:</p>
 <ul>
 <li>The order (<span class="math inline">\(S\)</span>) in which different biomarkers get affected by the disease.</li>
@@ -358,8 +371,8 @@ Tip
 <p>We explain how this data is constructed in the following, column by column.</p>
 <p>First, the <code>participant</code> id is <span class="math inline">\(67\)</span>. The <code>biomarker</code> indicates each of the five biomarkers examined and measured. The <code>measurement</code> is the biomarkers’ measurement. <code>k_j</code> is the participant’s stage. If this stage is above 0, it means <code>Diseased = True</code>. <code>S_n</code> indicates the <span class="math inline">\(n\)</span>-th rank in the order. If <code>k_j &lt; S_n</code>, it means the participant’s stage hasn’t reached that biomarker’s rank; therefore, this biomarker is <code>not affected</code>. If <code>k_j &gt;= S_n</code>, then this biomarker is <code>affected</code>.</p>
 <p>If a biomarker is <code>affected</code>, then its measurement comes from <span class="math inline">\(\mathcal N(\theta_{\mu}, \theta_{\sigma})\)</span> of that biomarker; if <code>not_affected</code>, <span class="math inline">\(\mathcal N(\phi_{\mu}, \phi_{\sigma})\)</span>.</p>
-<section id="generative-process" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="generative-process"><span class="header-section-number">2.2.1</span> Generative Process</h3>
+<section id="generative-process" class="level4" data-number="2.3.2.1">
+<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="generative-process"><span class="header-section-number">2.3.2.1</span> Generative Process</h4>
 <p>The generative process of biomarker measurements can be described as:</p>
 <p><span id="eq-gen"><span class="math display">\[
 X_{nj} \mid S, k_j, \theta_n, \phi_n \sim I(z_j = 1) \bigg[ I(S(n) \leq k_j) \, p(X_{nj} \mid \theta_{n}) + I(S(n) &gt; k_j) \, p(X_{nj} \mid \phi_{n}) \bigg] \\
@@ -375,11 +388,11 @@ X_{nj} \mid S, k_j, \theta_n, \phi_n &\sim I(z_j == 1) \bigg[ I(S(n) \leq k_j) \
 <p><span class="math inline">\(k_j \sim \mathrm{DiscreteUniform}(N)\)</span></p>
 <p><span class="math inline">\(k_j\)</span> follows a discrete uniform distribution, which means a participant is equally likely to fall in a progression stage (e.g., from <span class="math inline">\(0\)</span> to <span class="math inline">\(5\)</span>, where <span class="math inline">\(0\)</span> indicate this participant is healthy.)</p>
 </section>
-<section id="graphical-explanation" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="graphical-explanation"><span class="header-section-number">2.2.2</span> Graphical Explanation</h3>
+<section id="graphical-explanation" class="level4" data-number="2.3.2.2">
+<h4 data-number="2.3.2.2" class="anchored" data-anchor-id="graphical-explanation"><span class="header-section-number">2.3.2.2</span> Graphical Explanation</h4>
 <p>In the following, we explain the generative model in three different scenarios using <a href="https://en.wikipedia.org/wiki/Graphical_model">graphical models</a>: (1) All participants are healthy; (2) Both healthy and diseased participants, but all biomarkers are affected among diseased people; (3) Both healthy and diseased participants, but we do not whether biomarkers are affected or not among patients.</p>
-<section id="scenario-1" class="level4" data-number="2.2.2.1">
-<h4 data-number="2.2.2.1" class="anchored" data-anchor-id="scenario-1"><span class="header-section-number">2.2.2.1</span> Scenario 1</h4>
+<section id="scenario-1" class="level5" data-number="2.3.2.2.1">
+<h5 data-number="2.3.2.2.1" class="anchored" data-anchor-id="scenario-1"><span class="header-section-number">2.3.2.2.1</span> Scenario 1</h5>
 <p>If all participants are healthy:</p>
 <p><span id="eq-gen-s1"><span class="math display">\[
 X_{nj} \sim p(X_{nj} \mid \phi_{n})
@@ -399,8 +412,8 @@ Figure&nbsp;2.2: Graphical Model of Scenario 1
 </figure>
 </div>
 </section>
-<section id="scenario-2" class="level4" data-number="2.2.2.2">
-<h4 data-number="2.2.2.2" class="anchored" data-anchor-id="scenario-2"><span class="header-section-number">2.2.2.2</span> Scenario 2</h4>
+<section id="scenario-2" class="level5" data-number="2.3.2.2.2">
+<h5 data-number="2.3.2.2.2" class="anchored" data-anchor-id="scenario-2"><span class="header-section-number">2.3.2.2.2</span> Scenario 2</h5>
 <p>If we have oth diseased and healthy participants, and all biomarkers are affected among diseased participants.</p>
 <p><span id="eq-gen-s2"><span class="math display">\[
 X_{nj} \sim I(z_j == 1) p(X_{nj} \mid \theta_n) + (1-I(z_j == 1))p(X_{nj} \mid \phi_n)
@@ -421,8 +434,8 @@ Figure&nbsp;2.3: Graphical Model of Scenario 2
 </figure>
 </div>
 </section>
-<section id="scenario-3" class="level4" data-number="2.2.2.3">
-<h4 data-number="2.2.2.3" class="anchored" data-anchor-id="scenario-3"><span class="header-section-number">2.2.2.3</span> Scenario 3</h4>
+<section id="scenario-3" class="level5" data-number="2.3.2.2.3">
+<h5 data-number="2.3.2.2.3" class="anchored" data-anchor-id="scenario-3"><span class="header-section-number">2.3.2.2.3</span> Scenario 3</h5>
 <p>If we have both healthy and diseased participants, but we do not whether biomarkers are affected or not among patients, see <a href="#eq-gen" class="quarto-xref">Equation&nbsp;<span>2.3</span></a>.</p>
 <p>This is the model in usual cases.</p>
 <p>The graphical model looks like:</p>
@@ -438,6 +451,7 @@ Figure&nbsp;2.4: Graphical Model of Scenario 3
 </div>
 
 
+</section>
 </section>
 </section>
 </section>
@@ -876,7 +890,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
