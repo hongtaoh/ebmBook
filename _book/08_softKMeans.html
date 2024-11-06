@@ -277,7 +277,7 @@ window.Quarto = {
 
 <p>The basic idea of using Soft K-Means to estimate <span class="math inline">\(S\)</span> is:</p>
 <ul>
-<li>We first estimate distribution parameters using contrained K-Means, the exact procedure we covered in <a href="04_estDistParams.html#sec-hard-kmeans" class="quarto-xref"><span>Section 4.1</span></a>.</li>
+<li>We first estimate distribution parameters using hard K-Means, the exact procedure we covered in <a href="04_estDistParams.html#sec-hard-kmeans" class="quarto-xref"><span>Section 4.1</span></a>.</li>
 <li>In each iteration, we use Soft Kmeans algorithm to update <span class="math inline">\(\theta, \phi\)</span> (refer to <a href="04_estDistParams.html#sec-soft-kmeans" class="quarto-xref"><span>Section 4.3</span></a>) and use <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis–Hastings algorithm</a> to accept or reject a proposed <span class="math inline">\(S\)</span>.</li>
 </ul>
 <div id="fig-soft-kmeans-algo" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1154,7 +1154,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","loop":false,"descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
