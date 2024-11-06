@@ -213,8 +213,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
+  <a href="./07_hardKMeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Hard KMeans</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,7 +281,7 @@ window.Quarto = {
 </header>
 
 
-<p>In this chapter, we will do some exercise to have a deeper understanding of the math equations in <a href="02_ebmExplain.html#sec-calc-ll" class="quarto-xref"><span>Section 2.3.1</span></a>.</p>
+<p>In this chapter, we will do some exercise to have a deeper understanding of the math equations in <a href="02_ebmExplain.html#sec-calc-ll" class="quarto-xref"><span>Section 2.3</span></a>.</p>
 <section id="challenge" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="challenge"><span class="header-section-number">5.1</span> Challenge</h2>
 <p>Suppos we know <span class="math inline">\(S, \theta, \phi\)</span>. How could we estimate participant stages?</p>
@@ -664,7 +664,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>What if we know only <span class="math inline">\(S\)</span>, but not <span class="math inline">\(\theta\)</span> nor <span class="math inline">\(\phi\)</span>?</p>
+<p>What if we know only <span class="math inline">\(S\)</span>, but not <span class="math inline">\(\theta\)</span> or <span class="math inline">\(\phi\)</span>?</p>
 <p>The first step for us is to estimate <span class="math inline">\(\theta, \phi\)</span> and then follow the above procedures. To do that, refer back to <a href="04_estDistParams.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
 </div>
 </div>
@@ -1106,7 +1106,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":false,"selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","loop":false,"closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

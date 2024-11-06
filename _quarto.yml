@@ -12,7 +12,7 @@ book:
     - 04_estDistParams.ipynb
     - 05_estStages.ipynb
     - 06_estS.ipynb
-    - 07_simpleClustering.ipynb
+    - 07_hardKMeans.ipynb
     - 08_softKMeans.ipynb
     - 09_conjugatePriors.ipynb
     - 10_aggResults.ipynb
@@ -24,8 +24,8 @@ format:
   html:
     theme: cosmo
     lightbox: true
-  # pdf:
-  #   documentclass: scrreprt
+  pdf:
+    documentclass: scrreprt
 
 
 

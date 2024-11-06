@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Estimate S with Simple Clustering – Event Based Models for Disease Progression</title>
+<title>7&nbsp; Estimate S with Hard KMeans – Event Based Models for Disease Progression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07_simpleClustering.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07_hardKMeans.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Hard KMeans</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -210,8 +210,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
+  <a href="./07_hardKMeans.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Hard KMeans</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -258,7 +258,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-estS-cop-kmeans" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></h1>
+<h1 class="title"><span id="sec-estS-hard-kmeans" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Hard KMeans</span></span></h1>
 </div>
 
 
@@ -275,15 +275,24 @@ window.Quarto = {
 </header>
 
 
-<p>The basic idea of using simple clustering to estimate <span class="math inline">\(S\)</span> is:</p>
+<p>The basic idea of using hard K Means to estimate <span class="math inline">\(S\)</span> is:</p>
 <ul>
-<li>We first estimate distribution parameters using simple clustering, the exact procedure we covered in <a href="04_estDistParams.html#sec-cop-kmeans" class="quarto-xref"><span>Section 4.1</span></a>.</li>
+<li>We first estimate distribution parameters using hard K Means, the exact procedure we covered in <a href="04_estDistParams.html#sec-hard-kmeans" class="quarto-xref"><span>Section 4.1</span></a>.</li>
 <li>We use <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis–Hastings algorithm</a> to accept or reject a proposed <span class="math inline">\(S\)</span>.</li>
 </ul>
-<!-- ![Constrained K-Means Algorithm](img/cop_kmeans_algo.png){#fig-cop-kmeans} -->
+<div id="fig-hard-kmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hard-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="img/hard_kmeans_algo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;7.1: Hard K-Means Algorithm"><img src="img/hard_kmeans_algo.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hard-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Hard K-Means Algorithm
+</figcaption>
+</figure>
+</div>
 <section id="implementation" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="implementation"><span class="header-section-number">7.1</span> Implementation</h2>
-<div id="cell-1" class="cell" data-execution_count="16">
+<div id="cell-1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> utils </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json </span>
@@ -293,7 +302,7 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-2" class="cell" data-execution_count="17">
+<div id="cell-2" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_all_participant_ln_likelihood(</span>
@@ -336,7 +345,7 @@ window.Quarto = {
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        all_participant_ln_likelihood <span class="op">+=</span> this_participant_ln_likelihood</span>
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_participant_ln_likelihood</span>
 <span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> metropolis_hastings_simple_clustering(</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> metropolis_hastings_hard_kmeans(</span>
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    data_we_have,</span>
 <span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    iterations,</span>
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    n_shuffle,</span>
@@ -424,7 +433,7 @@ window.Quarto = {
 <span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_current_accepted_order_dicts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cell-3" class="cell" data-execution_count="18">
+<div id="cell-3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_shuffle <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>burn_in <span class="op">=</span> <span class="dv">2</span></span>
@@ -434,7 +443,7 @@ window.Quarto = {
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Current working directory: </span><span class="sc">{</span>base_dir<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> os.path.join(base_dir, <span class="st">"data"</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>cop_kmeans_dir <span class="op">=</span> os.path.join(base_dir, <span class="st">'simple_clustering'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>cop_kmeans_dir <span class="op">=</span> os.path.join(base_dir, <span class="st">'hard_kmeans'</span>)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>temp_results_dir <span class="op">=</span> os.path.join(cop_kmeans_dir, <span class="st">"temp_json_results"</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>img_dir <span class="op">=</span> os.path.join(cop_kmeans_dir, <span class="st">'img'</span>)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>results_file <span class="op">=</span> os.path.join(cop_kmeans_dir, <span class="st">"results.json"</span>)</span>
@@ -479,7 +488,7 @@ window.Quarto = {
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> combstr <span class="kw">not</span> <span class="kw">in</span> dic:</span>
 <span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>        dic[combstr] <span class="op">=</span> []</span>
 <span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    accepted_order_dicts <span class="op">=</span> metropolis_hastings_simple_clustering(</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    accepted_order_dicts <span class="op">=</span> metropolis_hastings_hard_kmeans(</span>
 <span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>        data_we_have,</span>
 <span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>        iterations,</span>
 <span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>        n_shuffle,</span>
@@ -507,32 +516,32 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Current working directory: /Users/hongtaoh/Desktop/github/ebmBook
 Data directory: /Users/hongtaoh/Desktop/github/ebmBook/data
-Temp results directory: /Users/hongtaoh/Desktop/github/ebmBook/simple_clustering/temp_json_results
-Image directory: /Users/hongtaoh/Desktop/github/ebmBook/simple_clustering/img
+Temp results directory: /Users/hongtaoh/Desktop/github/ebmBook/hard_kmeans/temp_json_results
+Image directory: /Users/hongtaoh/Desktop/github/ebmBook/hard_kmeans/img
 Processing with j=200, r=0.75, m=3
 Data file found: /Users/hongtaoh/Desktop/github/ebmBook/data/150|200_3.csv
-iteration 10 done, current accepted likelihood: -4383.710267251367, current acceptance ratio is 70.00 %, current accepted order is dict_values([2, 9, 3, 8, 5, 4, 6, 1, 10, 7]), 
-150|200_3 is done! Results written to /Users/hongtaoh/Desktop/github/ebmBook/simple_clustering/temp_json_results/temp_results_200_0.75_3.json</code></pre>
+iteration 10 done, current accepted likelihood: -4491.553963056519, current acceptance ratio is 70.00 %, current accepted order is dict_values([1, 5, 2, 3, 9, 8, 10, 6, 4, 7]), 
+150|200_3 is done! Results written to /Users/hongtaoh/Desktop/github/ebmBook/hard_kmeans/temp_json_results/temp_results_200_0.75_3.json</code></pre>
 </div>
 </div>
 </section>
 <section id="result" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="result"><span class="header-section-number">7.2</span> Result</h2>
 <p>We plot the resulting <span class="math inline">\(S\)</span> probalistically using a heatmap. We also quantify the difference between our result with the real <span class="math inline">\(S\)</span> using <a href="https://en.wikipedia.org/wiki/Kendall_rank_correlation_coefficient">Kendall’s Tau</a>. It ranges from <span class="math inline">\(-1\)</span> (completely different) to <span class="math inline">\(1\)</span> (exactly the same). <span class="math inline">\(0\)</span> indicate complete randomness.</p>
-<div id="fig-cop-kmeans-result" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-hard-kmeans-result" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-cop-kmeans-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="cop_kmeans/img/150-200_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;7.1: Result of Constrained K-Means"><img src="cop_kmeans/img/150-200_3.png" class="img-fluid figure-img"></a>
+<div aria-describedby="fig-hard-kmeans-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="hard_kmeans/img/150-200_3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;7.2: Result of Hard K-Means"><img src="hard_kmeans/img/150-200_3.png" class="img-fluid figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cop-kmeans-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1: Result of Constrained K-Means
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hard-kmeans-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: Result of Hard K-Means
 </figcaption>
 </figure>
 </div>
-<div id="cell-5" class="cell" data-execution_count="19">
+<div id="cell-5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<pre><code>{'150|200': [0.1111111111111111]}</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>{'150|200': [0.3333333333333333]}</code></pre>
 </div>
 </div>
 
@@ -973,7 +982,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

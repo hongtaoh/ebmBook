@@ -233,8 +233,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
+  <a href="./07_hardKMeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Hard KMeans</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -271,7 +271,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-cop-kmeans" id="toc-sec-cop-kmeans" class="nav-link active" data-scroll-target="#sec-cop-kmeans"><span class="header-section-number">4.1</span> Simple Clustering</a></li>
+  <li><a href="#sec-hard-kmeans" id="toc-sec-hard-kmeans" class="nav-link active" data-scroll-target="#sec-hard-kmeans"><span class="header-section-number">4.1</span> Hard K-Means</a></li>
   <li><a href="#sec-conjugate-priors" id="toc-sec-conjugate-priors" class="nav-link" data-scroll-target="#sec-conjugate-priors"><span class="header-section-number">4.2</span> Conjugate Priors</a></li>
   <li><a href="#sec-soft-kmeans" id="toc-sec-soft-kmeans" class="nav-link" data-scroll-target="#sec-soft-kmeans"><span class="header-section-number">4.3</span> Soft K-Means</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.4</span> Conclusion</a></li>
@@ -301,7 +301,7 @@ window.Quarto = {
 
 
 <p>Given <span class="math inline">\(S\)</span>, and a biomarker’s measurements, how can we estimate <span class="math inline">\(\mathcal N(\theta_{\mu}, \theta_{\sigma})\)</span> and <span class="math inline">\(\mathcal N(\phi_{\mu}, \phi_{\sigma})\)</span>?</p>
-<div id="cell-1" class="cell" data-execution_count="14">
+<div id="cell-1" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt </span>
@@ -314,14 +314,14 @@ window.Quarto = {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> mode</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-2" class="cell" data-execution_count="15">
+<div id="cell-2" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>output_dir <span class="op">=</span> <span class="st">'data'</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">/150|200_3.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>biomarkers <span class="op">=</span> df.biomarker.unique()</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>biomarker_df <span class="op">=</span> df[df.biomarker<span class="op">==</span>biomarkers[idx]]</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>biomarker_df.sample(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="56">
 <div>
 
 
@@ -340,100 +340,100 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">385</td>
-<td>185</td>
+<td data-quarto-table-cell-role="th">307</td>
+<td>107</td>
 <td>PCC-FCI</td>
-<td>17.985581</td>
-<td>0</td>
-<td>2</td>
-<td>not_affected</td>
-<td>False</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">305</td>
-<td>105</td>
-<td>PCC-FCI</td>
-<td>3.762252</td>
-<td>7</td>
+<td>2.875619</td>
+<td>10</td>
 <td>2</td>
 <td>affected</td>
 <td>True</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">301</td>
-<td>101</td>
-<td>PCC-FCI</td>
-<td>10.356600</td>
-<td>0</td>
-<td>2</td>
-<td>not_affected</td>
-<td>False</td>
-</tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">232</td>
-<td>32</td>
+<td data-quarto-table-cell-role="th">360</td>
+<td>160</td>
 <td>PCC-FCI</td>
-<td>12.526359</td>
+<td>14.765535</td>
 <td>0</td>
 <td>2</td>
 <td>not_affected</td>
 <td>False</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">382</td>
-<td>182</td>
+<td data-quarto-table-cell-role="th">365</td>
+<td>165</td>
 <td>PCC-FCI</td>
-<td>17.022691</td>
+<td>8.913005</td>
 <td>0</td>
 <td>2</td>
 <td>not_affected</td>
 <td>False</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">245</td>
-<td>45</td>
+<td data-quarto-table-cell-role="th">354</td>
+<td>154</td>
 <td>PCC-FCI</td>
-<td>13.954569</td>
+<td>11.380722</td>
 <td>0</td>
 <td>2</td>
 <td>not_affected</td>
 <td>False</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">316</td>
-<td>116</td>
+<td data-quarto-table-cell-role="th">200</td>
+<td>0</td>
 <td>PCC-FCI</td>
-<td>15.028866</td>
+<td>6.567299</td>
 <td>0</td>
 <td>2</td>
 <td>not_affected</td>
 <td>False</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">281</td>
-<td>81</td>
+<td data-quarto-table-cell-role="th">285</td>
+<td>85</td>
 <td>PCC-FCI</td>
-<td>6.374265</td>
-<td>4</td>
+<td>11.371021</td>
+<td>0</td>
+<td>2</td>
+<td>not_affected</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">375</td>
+<td>175</td>
+<td>PCC-FCI</td>
+<td>3.771693</td>
+<td>9</td>
 <td>2</td>
 <td>affected</td>
 <td>True</td>
 </tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">329</td>
-<td>129</td>
+<tr class="even">
+<td data-quarto-table-cell-role="th">203</td>
+<td>3</td>
 <td>PCC-FCI</td>
-<td>14.137447</td>
+<td>14.266635</td>
+<td>0</td>
+<td>2</td>
+<td>not_affected</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">295</td>
+<td>95</td>
+<td>PCC-FCI</td>
+<td>4.949612</td>
 <td>0</td>
 <td>2</td>
 <td>not_affected</td>
 <td>False</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">334</td>
-<td>134</td>
+<td data-quarto-table-cell-role="th">299</td>
+<td>99</td>
 <td>PCC-FCI</td>
-<td>16.119049</td>
+<td>17.490539</td>
 <td>0</td>
 <td>2</td>
 <td>not_affected</td>
@@ -445,14 +445,14 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="16">
+<div id="cell-3" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>biomarker_df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="57">
 <pre><code>(200, 7)</code></pre>
 </div>
 </div>
-<section id="sec-cop-kmeans" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="sec-cop-kmeans"><span class="header-section-number">4.1</span> Simple Clustering</h2>
+<section id="sec-hard-kmeans" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-hard-kmeans"><span class="header-section-number">4.1</span> Hard K-Means</h2>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -466,23 +466,22 @@ Tip
 <p>To use this algorithm, we only need to know (1) whether this participant is diseased; and (2) each biomarker measurement.</p>
 </div>
 </div>
-<p>The first method we can use is simple clustering. We clustering a certain biomarker’s measurements into two clusters. A clustering is successful if:</p>
+<p>The first method we can use is hard K-Means. We clustering a certain biomarker’s measurements into two clusters. A clustering is successful if:</p>
 <ul>
 <li>There are two, and only two clusters.</li>
 <li>Each clustes has more than one element (This is to make sure that the standard deviation of this biomarker’s theta or phi is non-zero)</li>
 </ul>
 <p>Ideally, we wanted all healthy participants to be grouped into a single cluster, which is why we initially tried using the constrained K-Means algorithm implemented by <span class="citation" data-cites="behrouz_babaki_2017_831850">Babaki (<a href="references.html#ref-behrouz_babaki_2017_831850" role="doc-biblioref">2017</a>)</span>. However, the algorithm did not work as intended.</p>
-<p>We therefore designed a simple clustering algorithm to satisfy our needs:</p>
+<p>We therefore designed a hard k-means algorithm to satisfy our needs:</p>
 <ul>
-<li>We use hierarchical clustering first. If the two above mentioned requirements are not met, then</li>
-<li>We try hard K-Means multiple times; If the two above mentioned requirements are still not met, then</li>
+<li>We try hard K-Means multiple times; If the two above mentioned requirements are not met, then</li>
 <li>We group the measurements into two random clusters; If the two above mentioned requirements are still not met, then raise an error and stop.</li>
 </ul>
-<div id="cell-5" class="cell" data-execution_count="17">
+<div id="cell-5" class="cell" data-execution_count="58">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_theta_phi_for_biomarker(biomarker_df, max_attempt <span class="op">=</span> <span class="dv">50</span>, seed <span class="op">=</span> <span class="va">None</span>):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""get theta and phi parameters for this biomarker using simple clustering</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""get theta and phi parameters for this biomarker</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    input: </span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">        - biomarker_df: a pd.dataframe of a specific biomarker</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">    output: </span></span>
@@ -498,33 +497,33 @@ Tip
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    measurements <span class="op">=</span> np.array(biomarker_df[<span class="st">'measurement'</span>]).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    healthy_df <span class="op">=</span> biomarker_df[biomarker_df[<span class="st">'diseased'</span>] <span class="op">==</span> <span class="va">False</span>]</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    clustering <span class="op">=</span> AgglomerativeClustering(n_clusters<span class="op">=</span>n_clusters, linkage<span class="op">=</span><span class="st">'ward'</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> clustering.fit_predict(measurements)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># clustering = AgglomerativeClustering(n_clusters=n_clusters, linkage='ward')</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># predictions = clustering.fit_predict(measurements)</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Verify that AgglomerativeClustering produced exactly 2 clusters with more than 1 member each</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    cluster_counts <span class="op">=</span> np.bincount(predictions) <span class="co"># array([3, 2])</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(cluster_counts) <span class="op">!=</span> n_clusters <span class="kw">or</span> <span class="bu">any</span>(c <span class="op">&lt;=</span> <span class="dv">1</span> <span class="cf">for</span> c <span class="kw">in</span> cluster_counts):</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"AgglomerativeClustering did not yield the required clusters, switching to KMeans."</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If AgglomerativeClustering fails, attempt KMeans with a max_attempt limit</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        curr_attempt <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        n_init_value <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        clustering_setup <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters, n_init<span class="op">=</span>n_init_value)</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> curr_attempt <span class="op">&lt;</span> max_attempt:</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>            clustering_result <span class="op">=</span> clustering_setup.fit(measurements)</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>            predictions <span class="op">=</span> clustering_result.labels_</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>            cluster_counts <span class="op">=</span> np.bincount(predictions) <span class="co"># array([3, 2])</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(cluster_counts) <span class="op">==</span> n_clusters <span class="kw">and</span> <span class="bu">all</span>(c <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">for</span> c <span class="kw">in</span> cluster_counts):</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span> </span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>            curr_attempt <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"KMeans failed. Try randomizing the predictions"</span>)</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>            predictions <span class="op">=</span> rng.choice([<span class="dv">0</span>, <span class="dv">1</span>], size<span class="op">=</span><span class="bu">len</span>(measurements))</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>            cluster_counts <span class="op">=</span> np.bincount(predictions)</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(cluster_counts) <span class="op">!=</span> n_clusters <span class="kw">or</span> <span class="kw">not</span> <span class="bu">all</span>(c <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">for</span> c <span class="kw">in</span> cluster_counts):</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"KMeans clustering failed to find valid clusters within max_attempt."</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># # Verify that AgglomerativeClustering produced exactly 2 clusters with more than 1 member each</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cluster_counts = np.bincount(predictions) # array([3, 2])</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># if len(cluster_counts) != n_clusters or any(c &lt;= 1 for c in cluster_counts):</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     print("AgglomerativeClustering did not yield the required clusters, switching to KMeans.")</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># # If AgglomerativeClustering fails, attempt KMeans with a max_attempt limit</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    curr_attempt <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    n_init_value <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    clustering_setup <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters, n_init<span class="op">=</span>n_init_value)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> curr_attempt <span class="op">&lt;</span> max_attempt:</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        clustering_result <span class="op">=</span> clustering_setup.fit(measurements)</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> clustering_result.labels_</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        cluster_counts <span class="op">=</span> np.bincount(predictions) <span class="co"># array([3, 2])</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(cluster_counts) <span class="op">==</span> n_clusters <span class="kw">and</span> <span class="bu">all</span>(c <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">for</span> c <span class="kw">in</span> cluster_counts):</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span> </span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>        curr_attempt <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"KMeans failed. Try randomizing the predictions"</span>)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> rng.choice([<span class="dv">0</span>, <span class="dv">1</span>], size<span class="op">=</span><span class="bu">len</span>(measurements))</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>        cluster_counts <span class="op">=</span> np.bincount(predictions)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(cluster_counts) <span class="op">!=</span> n_clusters <span class="kw">or</span> <span class="kw">not</span> <span class="bu">all</span>(c <span class="op">&gt;</span> <span class="dv">1</span> <span class="cf">for</span> c <span class="kw">in</span> cluster_counts):</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="ss">f"KMeans clustering failed to find valid clusters within max_attempt."</span>)</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    healthy_predictions <span class="op">=</span> predictions[healthy_df.index]</span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    mode_result <span class="op">=</span> mode(healthy_predictions, keepdims<span class="op">=</span><span class="va">False</span>).mode</span>
@@ -587,13 +586,13 @@ Tip
 <span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> estimates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cell-6" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simple_clustering_estimates <span class="op">=</span> get_theta_phi_estimates(data <span class="op">=</span> df)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>simple_clustering_estimates_df <span class="op">=</span> pd.DataFrame.from_dict(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    simple_clustering_estimates, orient<span class="op">=</span><span class="st">'index'</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>simple_clustering_estimates_df.reset_index(names <span class="op">=</span> <span class="st">'biomarker'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>simple_clustering_estimates_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div id="cell-6" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hard_kmeans_estimates <span class="op">=</span> get_theta_phi_estimates(data <span class="op">=</span> df)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hard_kmeans_estimates_df <span class="op">=</span> pd.DataFrame.from_dict(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    hard_kmeans_estimates, orient<span class="op">=</span><span class="st">'index'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>hard_kmeans_estimates_df.reset_index(names <span class="op">=</span> <span class="st">'biomarker'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>hard_kmeans_estimates_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
 <div>
 
 
@@ -612,58 +611,58 @@ Tip
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
 <td>HIP-FCI</td>
-<td>-10.228327</td>
-<td>4.983578</td>
-<td>4.542993</td>
-<td>2.553737</td>
+<td>-8.587833</td>
+<td>5.365053</td>
+<td>4.903437</td>
+<td>2.008974</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>PCC-FCI</td>
-<td>15.809768</td>
-<td>1.650215</td>
-<td>8.263734</td>
-<td>3.139495</td>
+<td>7.288870</td>
+<td>2.797150</td>
+<td>14.569768</td>
+<td>2.274322</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>AB</td>
-<td>164.477459</td>
-<td>29.331669</td>
-<td>270.635016</td>
-<td>37.100502</td>
+<td>173.199732</td>
+<td>33.778905</td>
+<td>277.009573</td>
+<td>34.503492</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>P-Tau</td>
-<td>-46.553651</td>
-<td>16.168641</td>
-<td>-13.821754</td>
-<td>12.241742</td>
+<td>-49.329924</td>
+<td>15.988080</td>
+<td>-15.568346</td>
+<td>12.688703</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>MMSE</td>
-<td>22.621574</td>
-<td>1.864118</td>
-<td>28.051114</td>
-<td>0.753814</td>
+<td>22.272803</td>
+<td>1.624078</td>
+<td>28.011392</td>
+<td>0.805532</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>ADAS</td>
-<td>-19.998640</td>
-<td>4.244514</td>
-<td>-5.924551</td>
-<td>1.307868</td>
+<td>-20.582091</td>
+<td>3.853234</td>
+<td>-6.002048</td>
+<td>1.487443</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
 <td>HIP-GMI</td>
-<td>0.726423</td>
-<td>0.125354</td>
-<td>0.290994</td>
-<td>0.168539</td>
+<td>0.576991</td>
+<td>0.157259</td>
+<td>0.192231</td>
+<td>0.128850</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">7</td>
@@ -676,10 +675,10 @@ Tip
 <tr class="odd">
 <td data-quarto-table-cell-role="th">8</td>
 <td>FUS-GMI</td>
-<td>0.484881</td>
-<td>0.039194</td>
-<td>0.611798</td>
-<td>0.044585</td>
+<td>0.519974</td>
+<td>0.047474</td>
+<td>0.628440</td>
+<td>0.038051</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">9</td>
@@ -695,13 +694,13 @@ Tip
 </div>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="19">
+<div id="cell-7" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'files/real_theta_phi.json'</span>, <span class="st">'r'</span>) <span class="im">as</span> f:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    truth <span class="op">=</span> json.load(f)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>truth_df <span class="op">=</span> pd.DataFrame.from_dict(truth, orient<span class="op">=</span><span class="st">'index'</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>truth_df.reset_index(names <span class="op">=</span> <span class="st">'biomarker'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>truth_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="60">
 <div>
 
 
@@ -804,7 +803,7 @@ Tip
 </div>
 </div>
 <p>Now let’s compare the results using plots:</p>
-<div id="cell-9" class="cell" data-execution_count="20">
+<div id="cell-9" class="cell" data-execution_count="61">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> obtain_theta_phi_params(biomarker, estimate_df, truth):</span>
@@ -895,18 +894,18 @@ Tip
 <span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>    final_chart.display()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cell-fig-estDistParamsCOPKM" class="cell" data-execution_count="21">
+<div id="cell-fig-estDistParamsCOPKM" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>make_chart(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    biomarkers[<span class="dv">0</span>:<span class="dv">4</span>], </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    simple_clustering_estimates_df, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    biomarkers[<span class="dv">0</span>:<span class="dv">5</span>], </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    hard_kmeans_estimates_df, </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    truth_df, </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"Comparing Theta and Phi Distributions Using Simple Clustering"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"Comparing Theta and Phi Distributions Using hard k-means"</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="fig-estdistparamscopkm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-estdistparamscopkm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_estDistParams_files/figure-html/fig-estdistparamscopkm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;4.1: Comparing Theta and Phi Distributions Using Simple Clusering"><img src="04_estDistParams_files/figure-html/fig-estdistparamscopkm-output-1.png" width="484" height="695" class="figure-img"></a>
+<a href="04_estDistParams_files/figure-html/fig-estdistparamscopkm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;4.1: Comparing Theta and Phi Distributions Using Simple Clusering"><img src="04_estDistParams_files/figure-html/fig-estdistparamscopkm-output-1.png" width="484" height="874" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-estdistparamscopkm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.1: Comparing Theta and Phi Distributions Using Simple Clusering
@@ -978,7 +977,7 @@ Tip
 <p>To apply the algorithm of conjugate priors, we assume we already know <span class="math inline">\(S\)</span> and <span class="math inline">\(k_j\)</span>, alongside biomarker measurement (<span class="math inline">\(X_{nj}\)</span>). Based on <span class="math inline">\(S\)</span> and <span class="math inline">\(k_j\)</span>, we can infer whether a biomarker is affected by the disease or not.</p>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="22">
+<div id="cell-12" class="cell" data-execution_count="63">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> estimate_params_exact(m0, n0, s0_sq, v0, data):</span>
@@ -1022,7 +1021,7 @@ Tip
 <span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">    - biomarkers: biomarkers </span></span>
 <span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co">    - data_we_have: participants data filled with initial or updated participant_stages</span></span>
 <span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co">    - theta_phi_kmeans: a hashmap of dicts, which are the prior theta and phi values</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">        obtained from the initial simple clustering algorithm</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="co">        obtained from the initial hard k-means algorithm</span></span>
 <span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co">    Output: </span></span>
 <span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">    - a hashmap of dictionaries. Key is biomarker name and value is a dictionary.</span></span>
@@ -1054,7 +1053,7 @@ Tip
 <span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>            <span class="co"># For example, if a biomarker indicates stage of (num_biomarkers), but all participants' stages</span></span>
 <span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>            <span class="co"># are smaller than that stage; so that for all participants, this biomarker is not affected</span></span>
 <span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">'not enough data here, so we have to use theta phi estimates from simple clustering'</span>)</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">'not enough data here, so we have to use theta phi estimates from hard k-means'</span>)</span>
 <span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>                <span class="co"># print(theta_phi_kmeans)</span></span>
 <span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> affected <span class="op">==</span> <span class="st">'affected'</span>:</span>
 <span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>                    dic[<span class="st">'theta_mean'</span>] <span class="op">=</span> theta_phi_kmeans[biomarker][<span class="st">'theta_mean'</span>]</span>
@@ -1067,16 +1066,16 @@ Tip
 <span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hashmap_of_means_stds_estimate_dicts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cell-13" class="cell" data-execution_count="23">
+<div id="cell-13" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>conjugate_prior_theta_phi <span class="op">=</span> get_theta_phi_conjugate_priors(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    biomarkers <span class="op">=</span> biomarkers, </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    data_we_have <span class="op">=</span> df, </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    theta_phi_kmeans <span class="op">=</span> simple_clustering_estimates</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    theta_phi_kmeans <span class="op">=</span> hard_kmeans_estimates</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>cp_df <span class="op">=</span> pd.DataFrame.from_dict(conjugate_prior_theta_phi, orient<span class="op">=</span><span class="st">'index'</span>)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>cp_df.reset_index(drop<span class="op">=</span><span class="va">True</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>cp_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="64">
 <div>
 
 
@@ -1188,12 +1187,12 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>When we estimate <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> using conjugate priors, we need to use the result from simple clustering as a fall back because it is possible that for a specific biomarker, either the <code>affected</code> or the <code>not_affected</code> group is empty. If that is the case, we are not able to estimate relevant parameters and have to resort to the fallback result.</p>
+<p>When we estimate <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> using conjugate priors, we need to use the result from hard k-means as a fall back because it is possible that for a specific biomarker, either the <code>affected</code> or the <code>not_affected</code> group is empty. If that is the case, we are not able to estimate relevant parameters and have to resort to the fallback result.</p>
 </div>
 </div>
-<div id="cell-fig-estDistParamsCP" class="cell" data-execution_count="24">
+<div id="cell-fig-estDistParamsCP" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>make_chart(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    biomarkers[<span class="dv">0</span>:<span class="dv">4</span>], </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    biomarkers[<span class="dv">0</span>:<span class="dv">5</span>], </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    cp_df, </span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    truth_df, </span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"Comparing Theta and Phi Distributions Using Conjugate Priors"</span></span>
@@ -1202,7 +1201,7 @@ Note
 <div id="fig-estdistparamscp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-estdistparamscp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_estDistParams_files/figure-html/fig-estdistparamscp-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;4.2: Comparing Theta and Phi Distributions Using Conjugate Prior"><img src="04_estDistParams_files/figure-html/fig-estdistparamscp-output-1.png" width="490" height="704" class="figure-img"></a>
+<a href="04_estDistParams_files/figure-html/fig-estdistparamscp-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;4.2: Comparing Theta and Phi Distributions Using Conjugate Prior"><img src="04_estDistParams_files/figure-html/fig-estdistparamscp-output-1.png" width="490" height="880" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-estdistparamscp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.2: Comparing Theta and Phi Distributions Using Conjugate Prior
@@ -1217,8 +1216,8 @@ The result from conjugate priors looks better than that from constrained kmeans.
 </section>
 <section id="sec-soft-kmeans" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="sec-soft-kmeans"><span class="header-section-number">4.3</span> Soft K-Means</h2>
-<p>Conjugate Priors assumes we know <span class="math inline">\(k_j\)</span>, which often times is not already known. Our simple clustering algorithm is only taking advantage of <span class="math inline">\(X_{nj}\)</span> and whether participants are diseased or not, leaving <span class="math inline">\(S\)</span>, which is known to us, unexploited.</p>
-<p>Soft K-Means is a good alternative to these two because it utilizes <span class="math inline">\(S\)</span> while at the same time not assuming we know <span class="math inline">\(k_j\)</span>.</p>
+<p>Conjugate Priors assumes we know <span class="math inline">\(k_j\)</span>, which often times is not already known. Our hard k-means algorithm is only taking advantage of <span class="math inline">\(X_{nj}\)</span> and whether participants are diseased or not, leaving <span class="math inline">\(S\)</span>, which is known to us, unexploited.</p>
+<p>Soft K-Means is a good alternative to these two because it utilizes <span class="math inline">\(S\)</span> while at the same time do not assume we know <span class="math inline">\(k_j\)</span>.</p>
 <p>The logic of soft-kmeans is this;</p>
 <ol type="1">
 <li>If a participant is diseased, we iterate through all possible disease stages, and calculate the associated likelihood using <a href="02_ebmExplain.html#eq-known-kj" class="quarto-xref">Equation&nbsp;<span>2.1</span></a>. We then normalize these likelihoods to obtain the estimated probability of this participant being at each stage. For example, if there are three possible stages, and the associated likelihoods are <code>[1, 3, 6]</code>, then the normalized likelihoods would be <code>[0.1, 0.3, 0.6]</code>.</li>
@@ -1234,7 +1233,7 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p>You may wonder how we can use <a href="02_ebmExplain.html#eq-known-kj" class="quarto-xref">Equation&nbsp;<span>2.1</span></a> when we do not know <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> yet (which is exactly what we are trying to do!). If you notice this, it is a very keen observation!.</p>
-<p>If fact, we are going to use the estimated <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> we obtained above using simple clustering.</p>
+<p>If fact, we are going to use the estimated <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> we obtained above using hard k-means.</p>
 </div>
 </div>
 <ol start="2" type="1">
@@ -1253,7 +1252,7 @@ Tip
 <p>If <span class="math inline">\(P_{\theta} =  P_{\phi}\)</span>, we randomly assign this participant’s biomarker measurement to a cluster.</p>
 </div>
 </div>
-<div id="cell-18" class="cell" data-execution_count="25">
+<div id="cell-18" class="cell" data-execution_count="66">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_single_measurement_likelihood(theta_phi, biomarker, affected, measurement):</span>
@@ -1321,7 +1320,7 @@ Tip
 <span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="co">    Input:</span></span>
 <span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="co">        - data: a pd.dataframe. For exrample, 150|200_3.csv</span></span>
 <span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a><span class="co">        - prior_theta_phi_estimates, a hashmap of dicts. </span></span>
-<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co">            This is the result from simple clustering </span></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="co">            This is the result from hard k-means </span></span>
 <span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
 <span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="co">    Output: </span></span>
 <span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="co">        - hashmap: a dictionary whose key is participant id</span></span>
@@ -1438,42 +1437,24 @@ Tip
 <span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> soft_kmeans_estimates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cell-19" class="cell" data-execution_count="26">
+<div id="cell-19" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>participants_hashmap <span class="op">=</span> obtain_participants_hashmap(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> df, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    prior_theta_phi_estimates <span class="op">=</span> cop_kmeans_estimates,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    prior_theta_phi_estimates <span class="op">=</span> hard_kmeans_estimates,</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>soft_kmeans_estimates <span class="op">=</span> cal_soft_kmeans_for_biomarkers(</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> df,</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        participants_hashmap <span class="op">=</span> participants_hashmap,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        prior_theta_phi_estimates <span class="op">=</span> cop_kmeans_estimates,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        prior_theta_phi_estimates <span class="op">=</span> hard_kmeans_estimates,</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[26], line 3</span>
-<span class="ansi-green-fg ansi-bold">      1</span> participants_hashmap <span style="color:rgb(98,98,98)">=</span> obtain_participants_hashmap(
-<span class="ansi-green-fg ansi-bold">      2</span>     data <span style="color:rgb(98,98,98)">=</span> df, 
-<span class="ansi-green-fg">----&gt; 3</span>     prior_theta_phi_estimates <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">cop_kmeans_estimates</span>,
-<span class="ansi-green-fg ansi-bold">      4</span> )
-<span class="ansi-green-fg ansi-bold">      6</span> soft_kmeans_estimates <span style="color:rgb(98,98,98)">=</span> cal_soft_kmeans_for_biomarkers(
-<span class="ansi-green-fg ansi-bold">      7</span>         data <span style="color:rgb(98,98,98)">=</span> df,
-<span class="ansi-green-fg ansi-bold">      8</span>         participants_hashmap <span style="color:rgb(98,98,98)">=</span> participants_hashmap,
-<span class="ansi-green-fg ansi-bold">      9</span>         prior_theta_phi_estimates <span style="color:rgb(98,98,98)">=</span> cop_kmeans_estimates,
-<span class="ansi-green-fg ansi-bold">     10</span> )
-
-<span class="ansi-red-fg">NameError</span>: name 'cop_kmeans_estimates' is not defined</pre>
 </div>
-</div>
-</div>
-<div id="cell-20" class="cell">
+<div id="cell-20" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>soft_kmeans_estimates_df <span class="op">=</span> pd.DataFrame.from_dict(</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    soft_kmeans_estimates, orient<span class="op">=</span><span class="st">'index'</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>soft_kmeans_estimates_df.reset_index(drop<span class="op">=</span><span class="va">True</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>soft_kmeans_estimates_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="68">
 <div>
 
 
@@ -1500,74 +1481,74 @@ Cell <span class="ansi-green-fg">In[26], line 3</span>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>PCC-FCI</td>
-<td>10.397606</td>
-<td>3.698129</td>
-<td>10.572261</td>
-<td>4.472485</td>
+<td>5.710289</td>
+<td>2.864833</td>
+<td>12.098428</td>
+<td>3.688180</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>AB</td>
-<td>157.514640</td>
-<td>19.654237</td>
-<td>232.546088</td>
-<td>61.426283</td>
+<td>153.648672</td>
+<td>18.041801</td>
+<td>253.189546</td>
+<td>51.038112</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>P-Tau</td>
-<td>-61.280491</td>
-<td>21.704315</td>
-<td>-27.032696</td>
-<td>20.645375</td>
+<td>-42.235505</td>
+<td>34.734178</td>
+<td>-24.626343</td>
+<td>14.860556</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>MMSE</td>
-<td>21.478486</td>
-<td>0.869996</td>
-<td>27.414771</td>
-<td>1.956947</td>
+<td>23.122406</td>
+<td>2.445751</td>
+<td>28.049683</td>
+<td>0.718480</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
 <td>ADAS</td>
-<td>-23.386222</td>
-<td>3.249392</td>
-<td>-7.343264</td>
-<td>4.453207</td>
+<td>-18.374956</td>
+<td>5.810630</td>
+<td>-5.889272</td>
+<td>1.283121</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
 <td>HIP-GMI</td>
-<td>0.114735</td>
-<td>0.106857</td>
-<td>0.385654</td>
-<td>0.240309</td>
+<td>0.442551</td>
+<td>0.261505</td>
+<td>0.373983</td>
+<td>0.234485</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">7</td>
 <td>AVLT-Sum</td>
-<td>60.569081</td>
-<td>6.389012</td>
-<td>39.177736</td>
-<td>14.855928</td>
+<td>23.819301</td>
+<td>6.942910</td>
+<td>41.371798</td>
+<td>14.381565</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">8</td>
 <td>FUS-GMI</td>
-<td>0.478209</td>
-<td>0.041763</td>
-<td>0.584511</td>
-<td>0.067892</td>
+<td>0.496420</td>
+<td>0.052929</td>
+<td>0.595958</td>
+<td>0.060867</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">9</td>
 <td>FUS-FCI</td>
-<td>-19.200644</td>
-<td>4.688806</td>
-<td>-10.050024</td>
-<td>3.751844</td>
+<td>-6.326653</td>
+<td>1.695438</td>
+<td>-10.205164</td>
+<td>3.733813</td>
 </tr>
 </tbody>
 </table>
@@ -1575,9 +1556,9 @@ Cell <span class="ansi-green-fg">In[26], line 3</span>
 </div>
 </div>
 </div>
-<div id="cell-fig-estDistParamsSKM" class="cell">
+<div id="cell-fig-estDistParamsSKM" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>make_chart(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    biomarkers[<span class="dv">0</span>:<span class="dv">4</span>], </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    biomarkers[<span class="dv">0</span>:<span class="dv">5</span>], </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    soft_kmeans_estimates_df, </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    truth_df, </span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    title <span class="op">=</span> <span class="st">"Comparing Theta and Phi Distributions Using Soft K-Means"</span></span>
@@ -1586,7 +1567,7 @@ Cell <span class="ansi-green-fg">In[26], line 3</span>
 <div id="fig-estdistparamsskm" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-estdistparamsskm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="04_estDistParams_files/figure-html/fig-estdistparamsskm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;4.3: Comparing Theta and Phi Distributions Using Soft K-Mean"><img src="04_estDistParams_files/figure-html/fig-estdistparamsskm-output-1.png" width="488" height="711" class="figure-img"></a>
+<a href="04_estDistParams_files/figure-html/fig-estdistparamsskm-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;4.3: Comparing Theta and Phi Distributions Using Soft K-Mean"><img src="04_estDistParams_files/figure-html/fig-estdistparamsskm-output-1.png" width="489" height="881" class="figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-estdistparamsskm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4.3: Comparing Theta and Phi Distributions Using Soft K-Mean
@@ -1598,8 +1579,8 @@ Figure&nbsp;4.3: Comparing Theta and Phi Distributions Using Soft K-Mean
 </section>
 <section id="conclusion" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.4</span> Conclusion</h2>
-<p>We compare the above three methods. Simple clustering has the least number of prerequisites: it only needs to know whether participants are healthy or not and biomarker measurements. However, the drawback is that it might not be very accurate. Conjugate priors are extremely accurate; however, it requires knowledge of almost everything: besides what is required by simple clustering, it also requires <span class="math inline">\(S\)</span> and <span class="math inline">\(k_j\)</span>. Soft k-kmeans does not require the knowledge of <span class="math inline">\(k_j\)</span> and is an improvement over simple clustering.</p>
-<p>We also noticed that both conjugate priors and soft k-means need to use the result from simple clustering as a fallback.</p>
+<p>We compare the above three methods. Hard k-means has the least number of prerequisites: it only needs to know whether participants are healthy or not and biomarker measurements. However, the drawback is that it might not be very accurate. Conjugate priors are extremely accurate; however, it requires knowledge of almost everything: besides what is required by hard k-means, it also requires <span class="math inline">\(S\)</span> and <span class="math inline">\(k_j\)</span>. Soft k-kmeans does not require the knowledge of <span class="math inline">\(k_j\)</span> and is an improvement over hard k-means.</p>
+<p>We also noticed that both conjugate priors and soft k-means need to use the result from hard k-means as a fallback.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -2046,7 +2027,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"loop":false,"selector":".lightbox","openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -176,8 +176,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
+  <a href="./07_hardKMeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Hard KMeans</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -234,8 +234,8 @@ window.Quarto = {
 </header>
 
 
-<p>We only used 10 iterations in the previous three chapters to demonstrate how our algorithm works. However, to get them really work, we need to run several thousand iterations.</p>
-<p>Also, to cancel out noises and randomness, we need to use all the fifity variations of data.</p>
+<p>We only used 10 iterations in the previous three chapters to demonstrate how our algorithm works. However, to get them to really work, we need to run several thousand iterations.</p>
+<p>Also, to cancel out noises and randomness, we need to use all the fifty variations of data.</p>
 <p>With the help of <a href="https://chtc.cs.wisc.edu/">The Center for High Throughput Computing</a> at the University of Wisconsin-Madison, we were able to run these tests. In the following, we present our results.</p>
 <div id="fig-res-soft-kmeans" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -257,8 +257,8 @@ Figure&nbsp;10.2: Results of Conjugate Priors
 </figcaption>
 </figure>
 </div>
-<p>From the two results, we are able to see that it is better to more participants, because that offers more information for our models. In terms of healthy ratio, it seems <span class="math inline">\(50\%\)</span> is a sweet spot.</p>
-<p>Also, we notice that conjugate priors performs better than soft K-Means.</p>
+<p>From the two results, we are able to see that it is better to have more participants, because that offers more information for our models. In terms of healthy ratio, it seems <span class="math inline">\(50\%\)</span> is a sweet spot.</p>
+<p>Also, we notice that conjugate priors perform better than soft K-Means.</p>
 <p>We also tested the two algorithms developed by <a href="https://ucl-pond.github.io/">UCL POND group</a> with the same 750 datasets: <a href="https://github.com/ucl-pond/ebm">EBM Basic</a> and <a href="https://github.com/ucl-pond/kde_ebm">KDE EBM</a>. See the following for results:</p>
 <div id="fig-res-ebm-basic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -276,7 +276,7 @@ Figure&nbsp;10.3: Results of EBM
 <li><code>greedy_n_iter=10</code></li>
 <li><code>greedy_n_init=5</code></li>
 </ul>
-<p>More specific configirations can be found at https://github.com/hongtaoh/ucl_ebm/blob/master/implement/calc_tau_basic.ipynb</p>
+<p>More specific configurations can be found at https://github.com/hongtaoh/ucl_ebm/blob/master/implement/calc_tau_basic.ipynb</p>
 <div id="fig-res-ebm-kde" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-res-ebm-kde-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -293,9 +293,9 @@ Figure&nbsp;10.4: Results of KDE EBM
 <li><code>greedy_n_iter=10</code></li>
 <li><code>greedy_n_init=5</code></li>
 </ul>
-<p>More specific configirations can be found at https://github.com/hongtaoh/ucl_kde_ebm/blob/master/implement/calc_tau_basic.ipynb</p>
+<p>More specific configurations can be found at https://github.com/hongtaoh/ucl_kde_ebm/blob/master/implement/calc_tau_basic.ipynb</p>
 <p>We can see that the performance of KDE EBM is more stable but EBM basic performs well when the healthy ratio is below <span class="math inline">\(50\%\)</span>.</p>
-<p>Neither of these methods had results as good as conjugate priors. We have to point out, that, even though their accuracy is not as high, their speed is really high. Both of these two algorithms can generate results with a single laptop GPU in just one hour; however, it might take days for our algorithms.</p>
+<p>Neither of these methods had results as good as conjugate priors. We have to point out that, even though their accuracy is not as high, their speed is really high. Both of these two algorithms can generate results with a single laptop GPU in just one hour; however, it might take days for our algorithms.</p>
 
 
 
@@ -733,7 +733,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

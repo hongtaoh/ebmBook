@@ -88,5 +88,8 @@
   },
   "07_simpleClustering.ipynb": {
     "07_simpleClustering.html": "1fc1ff0b"
+  },
+  "07_hardKMeans.ipynb": {
+    "07_hardKMeans.html": "7adf44f5"
   }
 }

@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./09_conjugatePriors.html" rel="next">
-<link href="./07_simpleClustering.html" rel="prev">
+<link href="./07_hardKMeans.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -210,8 +210,8 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07_simpleClustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span></a>
+  <a href="./07_hardKMeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Hard KMeans</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -277,7 +277,7 @@ window.Quarto = {
 
 <p>The basic idea of using Soft K-Means to estimate <span class="math inline">\(S\)</span> is:</p>
 <ul>
-<li>We first estimate distribution parameters using contrained K-Means, the exact procedure we covered in <a href="04_estDistParams.html#sec-cop-kmeans" class="quarto-xref"><span>Section 4.1</span></a>.</li>
+<li>We first estimate distribution parameters using contrained K-Means, the exact procedure we covered in <a href="04_estDistParams.html#sec-hard-kmeans" class="quarto-xref"><span>Section 4.1</span></a>.</li>
 <li>In each iteration, we use Soft Kmeans algorithm to update <span class="math inline">\(\theta, \phi\)</span> (refer to <a href="04_estDistParams.html#sec-soft-kmeans" class="quarto-xref"><span>Section 4.3</span></a>) and use <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm">Metropolis–Hastings algorithm</a> to accept or reject a proposed <span class="math inline">\(S\)</span>.</li>
 </ul>
 <div id="fig-soft-kmeans-algo" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1143,8 +1143,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./07_simpleClustering.html" class="pagination-link" aria-label="Estimate $S$ with Simple Clustering">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Simple Clustering</span></span>
+      <a href="./07_hardKMeans.html" class="pagination-link" aria-label="Estimate $S$ with Hard KMeans">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estimate <span class="math inline">\(S\)</span> with Hard KMeans</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1154,7 +1154,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
