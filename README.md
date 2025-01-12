@@ -1,3 +1,8 @@
+# Links
+
+- Implementation on CHTC: https://github.com/hongtaoh/ebm_chtc
+- EBM Package: https://github.com/hongtaoh/alabEBM
+
 # Introduction
 
 Event-based Model (EBM) is used to model the order of degenerative diseases. In another word, we want to estimate the order in which different biological factors ("biomarkers") get affected by a specific disease. The order is categorized by multiple **stages** in the disease progression. 
